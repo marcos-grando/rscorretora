@@ -18,8 +18,8 @@
 
 .newspage {
     height: auto; width: 100%;
-    /* padding-bottom: var(--distance-section); */
-    padding-bottom: 4rem;
+    padding-bottom: var(--distance-section);
+    /* padding-bottom: 4rem; */
 
     font-size: var(--size-base-newspage);
 
