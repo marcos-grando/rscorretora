@@ -11,7 +11,12 @@
 
 <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <!-- <script type="module" src="/src/main.jsx"></script> -->
+    <script type="module">
+        if (import.meta.env.DEV) {
+            import('/src/main.jsx');
+        }
+    </script>
 </body>
 
 </html>
