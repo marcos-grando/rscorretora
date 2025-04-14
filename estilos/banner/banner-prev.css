@@ -1,0 +1,82 @@
+/* banner .prev */
+.banner .wrapper .container.prev .slide:nth-of-type(2) .img .img-skew-shadow {
+    display: flex;
+}
+.banner .wrapper .container.prev .slide:nth-of-type(3) .content {
+    opacity: 1;
+    display: flex;
+    animation: outInfos var(--time) ease-out 1 forwards;
+}
+@keyframes outInfos {
+    to {
+        opacity: 0;
+        filter: blur(5px);
+        transform: translateY(-15px);
+    }
+}
+.banner .wrapper .container.prev .slide:nth-of-type(3) {
+    height: 100%; width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: 0;
+    z-index: 100;
+}
+.banner .wrapper .container.prev .slide:nth-of-type(3) .img .img-skew-shadow {
+    display: none;
+}
+.banner .wrapper .container.prev .slide:nth-of-type(3) .img .img-skew {
+    animation: showPrevImg calc(var(--time-show) * 1) ease-in-out 1 forwards;
+}
+@keyframes showPrevImg {
+    from {
+        opacity: 1;
+        filter: blur(0);
+        transform: translate(0) scale(1);
+    } 50% {
+        opacity: 0.6;
+    }to {
+        opacity: 0;
+        filter: blur(3px);
+        transform: scale(0.90)
+        translate( 
+            calc(1 * var(--moveLR-next-skew)), 
+            calc(-1 * var(--moveTB-next-skew)) 
+        );
+    }
+}
+.banner .wrapper .container.prev .slide:nth-of-type(3) .img .img-skew img {
+    animation: showPrevImage calc(var(--time-show) * 1) ease-in-out 1 forwards;
+}
+@keyframes showPrevImage {
+    from {
+        filter: blur(0px) brightness(1);
+    } 50% {
+        filter: blur(6px) brightness(0.6);
+    } to {
+        filter: blur(12px) brightness(0.1);
+    }
+}
+
+@media (max-width: 1024px) {
+    .banner .wrapper .container.prev .slide:nth-of-type(2) .img .img-skew-shadow {
+        display: none;
+    }
+    @keyframes showPrevImg {
+        from {
+            opacity: 1;
+            filter: blur(0);
+            transform: translate(0) scale(1);
+        } 50% {
+            opacity: 0.6;
+        }to {
+            opacity: 0;
+            filter: blur(3px);
+            transform: scale(0.90) translate(-150px, 0);
+        }
+    }
+}

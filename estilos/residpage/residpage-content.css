@@ -1,0 +1,122 @@
+
+.residpage .wrapper .container .content {
+    height: auto; width: 100%;
+}
+.residpage .wrapper .container .content .infos-imgs {
+    height: auto; width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 0.5rem;
+}
+
+/* Se "imagens-apto => false */
+.residpage .wrapper .container .content .infos-imgs .sem-img {
+    border: 2px solid var(--cor11);
+    height: 50vh;
+    grid-column: 1 / 4;
+
+    display: flex;
+}
+.residpage .wrapper .container .content .infos-imgs .sem-img2 {
+    /* background-color: var(--cor2); */
+    height: 100%; width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.residpage .wrapper .container .content .infos-imgs .sem-img2 p {
+    color: var(--cor3);
+    font-size: 2.2rem;
+    font-weight: 500;
+    opacity: 0.85;
+    text-align: center;
+}
+
+
+.residpage .wrapper .container .content .infos-imgs .img {
+    border: 1px solid var(--cor555);
+    border-radius: 2px;
+    height: 100%; width: 100%;
+    aspect-ratio: 1.35/1;
+
+    flex-shrink: 0;
+    position: relative;
+
+    overflow: hidden;
+    cursor: pointer;
+
+    transform: translateY(-1rem);
+    filter: blur(5px);
+    opacity: 0;
+
+    transition: all 400ms ease-out;
+    animation: none;
+}
+.residpage .wrapper .container .content .infos-imgs .img.animate {
+    animation: residPageImg 400ms ease-out 1 forwards;
+}
+
+.residpage .wrapper .container .content .infos-imgs .img img {
+    height: 100%; width: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    transition: all 250ms ease-out;
+}
+@keyframes residPageImg {
+    to {
+        transform: translateY(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+.residpage .wrapper .container .content .infos-imgs .img:hover img {
+    transform: scale(1.05);
+    filter: brightness(0.5);
+}
+.residpage .wrapper .container .content .infos-imgs .img:hover {
+    transform: scale(1.005);
+}
+
+.residpage .wrapper .container .content .infos-imgs .img p {
+    color: white;
+
+    opacity: 0;
+    position: absolute;
+    z-index: 10001;
+
+    transition: all 250ms ease-out;
+}
+.residpage .wrapper .container .content .infos-imgs .img p:nth-of-type(1) {
+    bottom: 1rem;
+    left: 1rem;
+}
+.residpage .wrapper .container .content .infos-imgs .img p:nth-of-type(2) {
+    width: max-content;
+    text-align: center;
+
+    font-size: 1.35rem;
+    font-weight: 600;
+
+    bottom: 50%;
+    right: 50%;
+    transform: translate(50%, 50%);
+}
+.residpage .wrapper .container .content .infos-imgs .img:hover p {
+    opacity: 1;
+}
+
+@media (max-width: 600px) {
+    .residpage .wrapper .container .content .infos-imgs {
+        gap: 0 5px;
+    }
+}
+@media (max-width: 460px) {
+    .residpage .wrapper .container .content .infos-imgs {
+        gap: 0 2.5px;
+    }
+}

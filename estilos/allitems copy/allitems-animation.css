@@ -1,0 +1,26 @@
+/* 
+    filter wrapper container filter-infos swiper swiper-wrapper slide-items.swiper-slide-active
+*/
+
+.filter .wrapper .container .filter-infos .swiper .swiper-wrapper .slide-items.swiper-slide-active .slide-item {
+    transform: scale(0.8);
+    animation: scaleItemsMmax 600ms ease-out 1 forwards !important;
+}
+@keyframes scaleItemsMmax {
+    from {
+        transform: scale(0.8);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.filter .wrapper .container .filter-infos .swiper .swiper-wrapper .slide-items:not(.swiper-slide-active) .slide-item {
+    transform: scale(1);
+    animation: scaleItemsMmin 600ms ease-out 1 forwards;
+}
+@keyframes scaleItemsMmin {
+    to {
+        transform: scale(0.8);
+    }
+}

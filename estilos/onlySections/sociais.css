@@ -1,0 +1,22 @@
+footer .wrapper .container .content .redes .redes-sociais {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+footer .wrapper .container .content .redes .redes-sociais .link {
+    display: flex;
+    gap: 0.5rem;
+
+    color: var(--cor3);
+    opacity: 0.9;
+    transition: all 250ms ease-out;
+}
+footer .wrapper .container .content .redes .redes-sociais .link i {
+    width: 1rem;
+    text-align: center;
+}
+footer .wrapper .container .content .redes .redes-sociais .link:hover {
+    color: var(--cor8);
+    opacity: 1;
+    transform: scale(1.05);
+}

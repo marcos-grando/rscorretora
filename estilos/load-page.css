@@ -1,0 +1,48 @@
+.loadingPage {
+    background-color: var(--cor7);
+    height: 100vh; width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    z-index: 100000000001;
+    transition: all 250ms ease-out;
+}
+.loadingPage.finally {
+    opacity: 0;
+}
+.loadingPage .loadingContent {
+    height: auto; width: max-content;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+.loadingPage .loadingContent .loadImg {
+    height: 125px;
+}
+.loadingPage .loadingContent p {
+    margin: 0 10px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--cor11);
+}
+:root {
+    --loadingBar-height: 12px;
+    --loadingBar-radius: calc( var(--loadingBar-height) / 2 )
+}
+.loadingPage .loadingContent .loaded-line {
+    background-color: var(--cor1);
+    border-radius: var(--loadingBar-radius);
+    height: var(--loadingBar-height); width: 100%;
+    padding: 2px;
+}
+.loadingPage .loadingContent .loaded-line .loading-line {
+    background-color: var(--cor7);
+    border-radius: var(--loadingBar-radius);
+    height: 100%; width: 100%;
+}

@@ -1,0 +1,76 @@
+/* banner .next */
+.banner .wrapper .container.next .slide:nth-of-type(1) {
+    height: 100%; width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    z-index: 100;
+}
+.banner .wrapper .container.next .slide:nth-of-type(1) .content {
+    opacity: 1;
+    display: flex;
+    animation: outInfos var(--time) ease-out 1 forwards;
+}
+.banner .wrapper .container.next .slide:nth-of-type(1) .img .img-skew-shadow {
+    display: flex;
+    z-index: -1;
+}
+.banner .wrapper .container.next .slide:nth-of-type(2) {
+    height: 100%; width: 100%;
+
+    justify-content: center;
+
+    position: absolute;
+    z-index: 100;
+}
+.banner .wrapper .container.next .slide:nth-of-type(2) .img .img-skew-shadow {
+    display: none;
+}
+.banner .wrapper .container.next .slide:nth-of-type(2) .img .img-skew {
+    display: flex;
+    animation: showNextImg var(--time-show) ease-in 1 forwards;
+}
+@keyframes showNextImg {
+    from {
+        opacity: 0.2;
+        filter: blur(3px);
+        transform: scale(0.90)
+        translate( 
+            calc(1 * var(--moveLR-next-skew)), 
+            calc(-1 * var(--moveTB-next-skew)) 
+        );
+    } to {
+        opacity: 1;
+        filter: blur(0);
+        transform: translate(0) scale(1);
+    }
+}
+
+@media (max-width: 1024px) {
+    .banner .wrapper .container.next .slide:nth-of-type(1) .img .img-skew-shadow {
+        display: none;
+        z-index: -1;
+    }
+    .banner .wrapper .container.next .slide:nth-of-type(2) .img .img-skew-shadow {
+        display: none;
+    }
+    .banner .wrapper .container.next .slide:nth-of-type(2) .img .img-skew {
+        display: flex;
+        animation: showNextImg var(--time-show) ease-in 1 forwards;
+    }
+    @keyframes showNextImg {
+        from {
+            opacity: 0.2;
+            filter: blur(5px);
+            transform: scale(0.90) translate(-150px, 0);
+        } to {
+            opacity: 1;
+            filter: blur(0);
+            transform: translate(0) scale(1);
+        }
+    }   
+}

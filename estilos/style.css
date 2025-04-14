@@ -1,0 +1,351 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Paleta de cores */
+:root {
+
+    /* cores avulsas
+    --cor: #c2b69d;
+    --cor: #f1ead6;
+    --cor: #fcf8eb;
+    --cor: #fff9ec;
+
+    --cor: #060e16;
+    --cor: #112c3c;
+    --cor: #183d51;
+    --cor: #055672;
+
+    --cor: #0b7ca3;
+    --cor: #039faa;
+    --cor: #14deeb;
+
+    --cor: #EECF6D;
+    --cor: #E2BE5E;
+    --cor: #D5AC4E;
+    --cor: #8B6220;
+
+    --cor6: #14deeb;
+    --cor7: #039faa;
+    --cor8: #0b7ca3;
+*/
+
+    /* bronze morno
+    --cor1: #f6f1e8;
+    --cor2: #F9F4E1;
+    --cor3: #2D1F14;
+    --cor4: #4B3D2C;
+    --cor5: #7A614B;
+    --cor6: #9E7D4E;
+    --cor7: #82644D;
+    --cor8: #C5A075;
+*/
+
+    /* azul
+    --cor1: #ecf4f2;
+    --cor11: #ecf4f271;
+    --cor111: #65ad9b3a;
+    --cor1111: #0b8365a1;
+    --cor2: #F9F4E1;
+    --cor3: #2D1F14;
+    --cor4: #4A3C2A;
+    --cor5: #7A614B;
+    --cor55: #7d6a5da2;
+    --cor555: #31000034;
+    --cor6: #5D92A4;
+    --cor7: #4B7381;
+    --cor8: #A4B8C2;
+*/
+
+    /* 2 rosé
+    --cor1: #f8f0ef;
+    --cor2: #F9F5F2;
+    --cor3: #2E2320;
+    --cor4: #5D4B47;
+    --cor5: #7E6A5C;
+    --cor6: #D7A7A1;
+    --cor7: #C68C85;
+*/
+
+    /* 10 turquesa
+    --cor1: #eef4f2;
+    --cor11: #eef4f27c;
+    --cor111: #ecd6d2e0;
+    --cor1111: #e0cac7f1;
+    --cor2: #FBF9F6;
+    --cor3: #2A2220;
+    --cor4: #4A3C36;
+    --cor5: #7C6A5E;
+    --cor55: #7d6a5da2;
+    --cor555: #31000034;
+    --cor6: #2A8B8E;
+    --cor7: #237F7B;
+    --cor8: #237F7B;
+*/
+
+    /* bronze sarinha
+    --cor1: #f0ece3;
+    --cor11: #f0ece338;
+    --cor111: #ecd6d2e0;
+    --cor1111: #e0cac7f1;
+    --cor2: #FBF8F2;
+    --cor3: #1C1A17;
+    --cor4: #4B3F36;
+    --cor5: #776B5F;
+    --cor55: #7d6a5da2;
+    --cor555: #31000034;
+    --cor6: #D1A26D;
+    --cor7: #B58B5A;
+    --cor8: #6C523D;
+*/
+
+    /* amarelo dourado
+    --cor00: #8514211e;
+    --cor000: #8514212c;
+    --cor1: #faf7f0;
+    --cor11: #f5f1f0;
+    --cor111: #ecd6d2e0;
+    --cor1111: #e0cac7f1;
+    --cor2: #F9F4E1;
+    --cor3: #2D1F14;
+    --cor4: #4B3C2C;
+    --cor5: #7A614B;
+    --cor55: #7d6a5da2;
+    --cor555: #31000034;
+
+    --cor6: #E2BE5E;
+    --cor7: #D5AC4E;
+    --cor8: #8B6220;
+*/
+
+    /* --cor1: #fcf0f0;
+    --cor11: #f7e6e6; */
+
+    /* vinho / vermelho */
+
+    /* --cor1: #F6F1EC;
+    --cor11: #f1e7e5; */
+
+
+    /* --cor1: #f8f6f3; */
+    --cor1: #f4f2f2;
+    --cor11: #f5f1f0;
+
+    --cor111: #ecd6d2e0;
+    --cor1111: #fffbfbc7;
+    --cor2: #FBF6F3;
+    --cor3: #2E1F1C;
+    --cor4: #5C3D3A;
+    --cor5: #7D6A5D;
+    --cor55: #7d6a5da2;
+    --cor555: #31000034;
+    --cor6: #9B1D27;
+    --cor7: #7F0000;
+    --cor8: #4B0015;
+}
+/* Definições de cores por seção */
+:root {
+    /* footer.css, blog/ possuem :root próprios */
+
+    /* header */
+    --cor-header-fundo: var(--cor1);
+    --cor-header-fundo-sobretom: var(--cor11);
+    --cor-header-border-sobretom: var(--cor111);
+    --cor-header-border-sobretom2: var(--cor1111);
+    --cor-header-shadow: var(--cor55);
+    --cor-header-shadow2: var(--cor555);
+    --cor-header-texto: var(--cor3);
+    --cor-header-textoClaro: var(--cor2);
+    --cor-header-atrat: var(--cor6);
+    --cor-header-atrat1: var(--cor7);
+    --cor-header-atrat2: var(--cor8);
+
+    /* banner slide pagina inicial */
+    --cor-banner-fundo: var(--cor1);
+    --cor-banner-texto: var(--cor4);
+    --cor-banner-texto-claro: var(--cor2);
+    --cor-banner-texto-escuro: var(--cor3);
+    --cor-banner-texto-shadow: var(--cor5);
+    --cor-banner-title: var(--cor6);
+    --cor-banner-subtitle: var(--cor8);
+    --cor-banner-atrat: var(--cor6);
+    --cor-banner-atrat1: var(--cor7);
+    --cor-banner-atrat2: var(--cor8);
+
+    /* onlysection/news.css (newsSec) só */
+    --cor-simpleSect-titles: var(--cor3);
+    --cor-simpleSect-textos: var(--cor4);
+    --cor-simpleSect-atrat1: var(--cor6);
+    --cor-simpleSect-atrat2: var(--cor7);
+
+    --cor-newsSect-button: transparent;
+    --cor-newsSect-button-text: var(--cor4);
+    --cor-newsSect-button-textHover: var(--cor7);
+
+    /* sobre/sobreall */
+    --cor-sobre-fundo: var(--cor1);
+    --cor-sobre-border: var(--cor1);
+    --cor-sobre-texto: var(--cor3);
+    --cor-sobre-claro: var(--cor2);
+    --cor-sobre-atrat: var(--cor6);
+    --cor-sobre-atrat1: var(--cor7);
+    --cor-sobre-atrat2: var(--cor8);
+
+    /* Usado em: allitems/ e slides/ */
+    --cor-empreendsSect-titles: var(--cor3);
+    --cor-empreends-atrat1: var(--cor6);
+    --cor-empreends-atrat2: var(--cor7);
+    --cor-empreendsSection-line: linear-gradient(90deg,
+            var(--cor-empreends-atrat2),
+            var(--cor-empreends-atrat1),
+            var(--cor-empreends-atrat2));
+
+    /* Items/cards de residenciais */
+    --radius-empreends-contentCard: 5px;
+
+    --cor-empreends-items-fundo: white;
+    --cor-empreends-items-border: var(--cor555);
+    --cor-empreends-items-textos: var(--cor4);
+    --cor-empreends-items-infos: var(--cor3);
+    --cor-empreends-items-infosI: var(--cor7);
+
+    --cor-empreends-itemsStatus-fundo: linear-gradient(90deg,
+            var(--cor-slide-wrapper-atrat1),
+            var(--cor-slide-wrapper-atrat),
+            var(--cor-slide-wrapper-atrat));
+    --cor-empreends-itemsStatus-border: var(--cor7);
+    --cor-empreends-itemsStatus-status: var(--cor2);
+
+    /* Allitems filtro de busca */
+    --cor-empreendsFilter-border: var(--cor555);
+    --cor-empreendsFilter-border-opts: var(--cor1);
+
+    --cor-empreendsFilter-categoria: var(--cor4);
+    --cor-empreendsFilter-categoria-opts: var(--cor4);
+    --cor-empreendsFilter-categoria-optsHover: var(--cor1);
+
+    --cor-empreendsFilter-categoria-optsBox: var(--cor1);
+    --cor-empreendsFilter-categoria-optsBox-border: var(--cor55);
+    --cor-empreendsFilter-categoria-optsBox-checked: var(--cor7);
+    --cor-empreendsFilter-categoria-checkV-checked: var(--cor1);
+
+
+    --cor-slide-wrapper-clara: var(--cor1);
+    --cor-slide-wrapper-texto: var(--cor3);
+    --cor-slide-wrapper-title: var(--cor4);
+    --cor-slide-wrapper-subtitle: var(--cor7);
+    --cor-slide-wrapper-atrat: var(--cor6);
+    --cor-slide-wrapper-atrat1: var(--cor7);
+    --cor-slide-wrapper-atrat2: var(--cor8);
+}
+/* Definições de tamanhos por seção */
+:root {
+    /* Geral */
+    --distance-section: 150px;
+    --distance-section-banner: calc( var(--distance-section) + (var(--height-balls) * 1.5) );
+    /* --distance-section-topics: calc(var(--distance-section) + 50px); */
+    --distance-section-sobre: calc( var(--distance-section));
+    --distance-section-allitems: calc( var(--distance-section) );
+    --distance-section-slidemove: calc( var(--distance-section) );
+    --distance-section-blogspace: calc( var(--distance-section) );
+    --base-width-content: 80%;
+
+    --max-width-news: 720px;
+    --max-width-onlypage: 980px;
+    --max-width-content2: 980px;
+    --max-width-content: 1280px;
+    --max-width-container: 1720px;
+    --max-width-external: 1920px;
+
+    /* Header */
+    --height-loading-bar: 3px;
+    --height-header: 120px;
+    --height-header-content: 75px;
+
+    /* Banner */
+    --banner-height-vp: 500px;
+    --banner-max-height-vp: 550px;
+    --padding-banner: 50px;
+    --padding-banner-skew: calc(var(--padding-banner) / -2);
+    --moveTB-next-skew: calc(var(--padding-banner-skew) * 2);
+    --moveLR-next-skew: calc(var(--padding-banner-skew) * 2.8);
+    --height-balls: 40px;
+
+    /* Slides */
+    --slide-wrapper-padding: 2.6rem;
+    --slide-nextprev-padding: 6.6rem;
+
+    /* notícias (news.jsx) */
+    --cor-news-title: var(--cor4);
+    --height-img-opts: 200px;
+    /* define altura das img's em .news
+    define altura da section .topics */
+
+    /* Geral Fonts */
+    /* --size-base-all: clamp(13px, 0.9vw, 16px); */
+    --size-base-all: 16px;
+    --td: clamp(17px, 1vw, 18px);
+    /* --size-base-header: calc(var(--td) - 10px); */
+    --size-base-header: calc(var(--size-base-all) - 9px);
+
+    --size-base-banner: 16px;
+    /* --size-base-banner: calc(var(--td) - 1px); */
+    --size-base-newspage: calc(var(--size-base-all) - 2px);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+
+    isolation: auto !important;
+    unicode-bidi: normal !important;
+}
+html,
+body {
+    font-family: 'Poppins', 'montserrat', 'Roboto', sans-serif;
+    line-height: 1.25;
+    width: 100%;
+    /* overflow-x: hidden; */
+}
+html {
+    background-color: #f5f1f0;
+}
+body {
+    background-color: white;
+}
+body.no-scroll {
+    touch-action: none;
+}
+
+a {
+    text-decoration: none;
+}
+li {
+    list-style-type: none;
+}
+
+@media (max-width: 1024px) {
+    :root {
+        --distance-section-sobre: calc( var(--distance-section));
+        --distance-section-allitems: calc( var(--distance-section) );
+        --distance-section-slidemove: calc( var(--distance-section) - 25px );
+    }
+}
+
+@media (min-width: 501px) and (max-width: 1024px) {
+    :root {
+        --size-base-all: clamp(13px, 1vw, 15px);
+        --size-base-banner: calc(var(--td) - 3px);
+
+        --height-balls: 36px;
+    }
+}
+
+@media (max-width: 500px) {
+    :root {
+        --size-base-all: clamp(13px, 1vw, 15px);
+        --size-base-banner: calc(var(--td) - 5px);
+
+        --height-balls: 32px;
+    }
+}

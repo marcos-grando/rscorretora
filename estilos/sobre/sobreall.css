@@ -1,0 +1,135 @@
+.sobre-full {
+    height: auto; width: 100%;
+    /* margin-bottom: var(--distance-section); */
+    font-size: var(--size-base-all);
+
+    display: flex;
+    justify-content: center;
+
+    position: relative;
+    overflow: hidden;
+}
+.sobre-full .wrapper {
+    height: auto; width: 100%;
+    max-width: var(--max-width-onlypage);
+    margin: 50px 0 var(--distance-section) 0;
+    padding: 0 1rem;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sobre-full .wrapper .container {
+    height: auto; width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.sobre-full .wrapper .container .content {
+    height: auto; width: 100%;
+    /* padding: 1rem 1rem 1rem 0; */
+
+    text-align: justify;
+    position: relative;
+}
+
+.sobre-full .wrapper .container .content .title {
+    height: auto; width: 100%;
+    margin-bottom: 1rem;
+
+    text-align: left;
+    color: var(--cor-sobre-texto);
+}
+.sobre-full .wrapper .container .content .title p:nth-of-type(1) {
+    font-size: 1.2em;
+    font-weight: 500;
+    opacity: 0.95;
+}
+
+.sobre-full .wrapper .container .content img {
+    height: 350px; width: 35%;
+
+    margin-left: min(2rem, 4%);
+    margin-bottom: 0.5rem;
+
+    float: right;
+    object-fit: cover;
+    object-position: top;
+}
+
+.sobre-full .wrapper .container .content .texto {
+    height: auto; width: 100%;
+    max-width: var(--max-width-news);
+
+}
+.sobre-full .wrapper .container .content .texto p {
+    margin-bottom: 1rem;
+    font-size: 0.9em;
+    font-weight: 300;
+    opacity: 0.85;
+}
+
+.sobre-full .wrapper .container .content .texto .dados {
+    width: max-content;
+}
+.sobre-full .wrapper .container .content .texto div {
+    width: max-content;
+    padding-right: 1rem;
+
+    display: flex;
+    gap: 0.5rem;
+
+    font-size: 0.8em;
+    opacity: 0.85;
+}
+.sobre-full .wrapper .container .content .texto div i {
+    transform: translateY(12%);
+    color: var(--cor-sobre-atrat2);
+}
+.sobre-full .wrapper .container .content .texto .wpp i {
+    font-weight: 600;
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+    .sobre-full .wrapper .container .content img {
+        height: 250px; width: 35%;
+        margin-left: 0;
+        margin: 0 0.5rem;
+    
+        float: right;
+        object-fit: cover;
+        object-position: top;
+    }
+}
+@media (min-width: 451px) and (max-width: 600px) {
+    .sobre-full .wrapper .container .content img {
+        height: 200px; width: auto;
+        margin-left: 0;
+        margin: 0 0.5rem;
+    
+        float: right;
+        object-fit: cover;
+        object-position: top;
+    }
+}
+@media (max-width: 450px) {
+    .sobre-full .wrapper .container .content {
+        text-align: center;
+    }
+    .sobre-full .wrapper .container .content .title {
+        text-align: center;
+    }
+    .sobre-full .wrapper .container .content .texto {
+        text-align: justify;
+    }
+    .sobre-full .wrapper .container .content img {
+        height: auto; width: 300px;
+        margin-left: 0;
+        margin: 0 0.5rem 0.5rem 0.5rem;
+    
+        float: none;
+        object-fit: cover;
+        object-position: top;
+    }
+}

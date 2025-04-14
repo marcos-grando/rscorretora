@@ -1,0 +1,72 @@
+
+/* .filter-infos => retangulo com as infos de cada slide */
+.filter .wrapper .container .filter-infos .swiper .slide-items .slide-item .item .content  {
+    border: 1px groove var(--cor-empreends-items-border);
+    border-radius: 11px;
+    background-color: var(--cor-empreends-items-fundo);
+    height: auto; width: 105%;
+    padding: 0.5rem;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    transform: translate(50%, 32%) scale(1.015);
+    transition: all 250ms ease-out;
+}
+.filter .wrapper .container .filter-infos .swiper .slide-items .slide-item .item .content  .texts {
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.3rem;
+    color: var(--cor-empreends-items-textos);
+    font-weight: 400;
+}
+.filter .wrapper .container .filter-infos .swiper .slide-items .slide-item .item .content  .texts p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.filter .wrapper .container .filter-infos .swiper .slide-items .slide-item .item .content  .texts p.title {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+.filter .wrapper .container .filter-infos .swiper .slide-items .slide-item .item .content  .texts p.local {
+    font-size: 0.9em;
+}
+.filter .wrapper .container .filter-infos .swiper .slide-items .slide-item .item .content  .texts p.valor {
+    font-size: 0.9em;
+}
+.filter .wrapper .container .filter-infos .swiper .slide-items .slide-item .item .content  .texts p.valor span {
+    color: var(--cor-empreends-atrat1);
+    font-weight: 400;
+}
+
+.filter .wrapper .container .filter-infos .swiper .slide-items .item .content  .infos {
+    border-top: 1px solid var(--cor-empreends-items-border);
+    padding-top: 0.5rem;
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 0.4em;
+
+    font-size: 0.8em;
+}
+.filter .wrapper .container .filter-infos .swiper .slide-items .item .content  .infos .info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+
+    color: var(--cor-empreends-items-infos);
+    font-size: 0.95em;
+}
+.filter .wrapper .container .filter-infos .swiper .slide-items .item .content  .infos .info i {
+    color: var(--cor-empreends-items-infosI);
+}

@@ -1,0 +1,78 @@
+.residpage .wrapper .container {
+    /* border: 1px solid purple; */
+    height: auto; width: 100%;
+    max-width: var(--max-width-content);
+
+}
+
+/* cond, apto, planta */
+.residpage .wrapper .container .opts {
+    /* border: 1px solid orange; */
+    display: flex;
+    justify-content: space-between;
+    margin: var(--residpage-marg-opts);
+}
+.residpage .wrapper .container .opts .opt {
+    border-top: 3px solid var(--cor-resid-topBorder);
+    height: auto; width: 100%;
+    padding: var(--residpage-padd-opts);
+    
+    text-align: center;
+    font-size: 0.9em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    opacity: 0.7;
+    cursor: pointer;
+    transition: all 350ms ease-out;
+}
+.residpage .wrapper .container .opts .opt:hover{
+    border-top: 3px solid var(--cor-resid-atrat1);
+    color: var(--cor-resid-atrat2);
+}
+.residpage .wrapper .container .opts .opt.active {
+    border-top: 3px solid var(--cor-resid-atrat1);
+    color: var(--cor-resid-atrat2);
+    opacity: 1;
+}
+
+/* Caso tenha +2 torres no mesmo Residencial */
+.residpage .wrapper .container .sub-opts {
+    /* border: 1px solid orangered; */
+    padding: var(--residpage-padd-subopts);
+    margin: var(--residpage-marg-subopts);
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+.residpage .wrapper .container .sub-opts .opt {
+    border-top: 3px solid var(--cor-resid-topBorder);
+    height: auto; width: 100%;
+    padding: var(--residpage-marg-subopt);
+    
+    text-align: center;
+    font-size: 1em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    opacity: 0.7;
+    cursor: pointer;
+    transition: all 350ms ease-out;
+}
+.residpage .wrapper .container .sub-opts .opt:hover{
+    border-top: 3px solid var(--cor-resid-atrat1);
+    color: var(--cor-resid-atrat2);
+}
+.residpage .wrapper .container .sub-opts .opt.active {
+    border-top: 3px solid var(--cor-resid-atrat1);
+    color: var(--cor-resid-atrat2);
+    opacity: 1;
+}
+
+

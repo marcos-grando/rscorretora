@@ -1,0 +1,87 @@
+.banner .wrapper .container {
+    height: 100%; width: 100%;
+    max-width: var(--max-width-container);
+
+    position: relative;
+}
+
+.banner .wrapper .container .slide {
+    display: none;
+}
+.banner .wrapper .container .slide:nth-of-type(2) {
+    /* border: 1px solid red; */
+    height: 100%; width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* position: relative; */
+}
+
+.banner .wrapper .container .slide .img {
+    border-radius: var(--radius-skew-banner);
+    height: 100%; width: 45%;
+    aspect-ratio: 1.8/1;
+
+    transform: skewX(-10deg);
+    z-index: 100;
+    /* overflow: hidden; */
+}
+
+.banner .wrapper .container .slide .img .img-skew-shadow {
+    /* background-color: aliceblue; */
+    border: 2px solid var(--cor-header-border-sobretom);
+    border-radius: var(--radius-skew-banner);
+    height: 100%; width: 100%;
+
+    display: flex;
+
+    position: absolute;
+    bottom: var(--padding-banner-skew);
+    left: var(--padding-banner-skew);
+
+    z-index: -1;
+}
+
+.banner .wrapper .container .slide .img .img-skew {
+    border-radius: var(--radius-skew-banner);
+    height: 100%; width: auto;
+
+    z-index: 100;
+    overflow: hidden;
+}
+.banner .wrapper .container .slide .img .img-skew img {
+    height: 100%; width: 100%;
+
+    display: block;
+
+    transform: skewX(10deg) scale(1.1);
+    object-fit: cover;
+    object-position: center;
+
+    pointer-events: none;
+    z-index: 101;
+}
+
+@media (max-width: 1024px) {
+    .banner .wrapper .container .slide:nth-of-type(2) {
+        flex-direction: column;
+    }
+    .banner .wrapper .container .slide .img {
+        border-radius: 0px;
+        height: 100%; width: 100%;
+        position: absolute;
+        transform: skewX(0);
+    }
+    .banner .wrapper .container .slide .img .img-skew {
+        border-radius: 0;
+    }
+    .banner .wrapper .container .slide .img .img-skew-shadow {
+        display: none;
+    }
+    .banner .wrapper .container .slide .img .img-skew img {
+        transform: skewX(0) scale(1);
+        filter: brightness(0.64);
+    }
+}

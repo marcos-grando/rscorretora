@@ -1,0 +1,129 @@
+
+footer .wrapper .container .content .blog .relacionais {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+footer .wrapper .container .content .blog .relacionais .item {
+    color: var(--cor-relacionais-footer-title);
+    opacity: 0.9;
+    transition: all 250ms ease-out;
+}
+footer .wrapper .container .content .blog .relacionais .item .content {
+    display: flex;
+
+    font-size: 0.9rem;
+}
+footer .wrapper .container .content .blog .relacionais .item .content p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+footer .wrapper .container .content .blog .relacionais .item:hover {
+    color: var(--cor-relacionais-footer-titleHover);
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* .newspage .wrapper .container .content .relacionais-newspage => em .newspage.css */
+.newspage .wrapper .container .content .relacionais-newspage p.title {
+    padding: 0.5em;
+    text-align: center;
+
+    color: var(--cor-newspage-relacionais-LeiaMais);
+    font-size: 1.15em;
+    font-weight: 500;
+}
+.newspage .wrapper .container .content .relacionais-newspage .relacionais {
+    /* padding: 0 1em; */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.newspage .wrapper .container .content .relacionais-newspage .relacionais .item {
+    color: var(--cor-newspage-relacionais-item);
+    opacity: 0.9;
+    transition: all 150ms ease-out;
+}
+.newspage .wrapper .container .content .relacionais-newspage .relacionais .item img {
+    height: 125px; width: 100%;
+    margin: 5px 0;
+
+    object-fit: cover;
+}
+.newspage .wrapper .container .content .relacionais-newspage .relacionais .item .content {
+    display: flex;
+
+    font-size: 0.9rem;
+}
+.newspage .wrapper .container .content .relacionais-newspage .relacionais .item .content p {
+    font-size: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.newspage .wrapper .container .content .relacionais-newspage .relacionais .item:hover {
+    color: var(--cor-newspage-relacionais-itemHover);
+    opacity: 1;
+    transform: scale(1.025);
+}
+
+@media (max-width: 480px) {
+    .newspage .wrapper .container .content .relacionais-newspage p.title {
+        text-align: left;
+        font-size: 0.9em;
+    }
+    .newspage .wrapper .container .content .relacionais-newspage .relacionais {
+        height: auto; width: 100%;
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 0.5rem;
+        position: relative;
+    }
+    .newspage .wrapper .container .content .relacionais-newspage .relacionais .item {
+        width: 100%; min-width: 0;
+        display: block;
+    }
+    .newspage .wrapper .container .content .relacionais-newspage .relacionais .item:nth-of-type(n+3) {
+        display: none;
+    }
+    .newspage .wrapper .container .content .relacionais-newspage .relacionais .item img {
+        height: 95px; width: 100%;
+    }
+    .newspage .wrapper .container .content .relacionais-newspage .relacionais .item .content p {
+        font-size: 0.85em;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .newspage .wrapper .container .content .relacionais-newspage p.title {
+        text-align: left;
+        font-size: 1em;
+    }
+    .newspage .wrapper .container .content .relacionais-newspage .relacionais {
+        height: auto; width: 100%;
+        
+        /* display: flex;
+        flex-direction: row; */
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 0.5rem;
+        position: relative;
+    }
+    .newspage .wrapper .container .content .relacionais-newspage .relacionais .item {
+        width: 100%; min-width: 0;
+        display: block;
+    }
+    .newspage .wrapper .container .content .relacionais-newspage .relacionais .item:nth-of-type(n+4) {
+        display: none;
+    }
+    .newspage .wrapper .container .content .relacionais-newspage .relacionais .item img {
+        height: 95px; width: 100%;
+    }
+    .newspage .wrapper .container .content .relacionais-newspage .relacionais .item .content p {
+        font-size: 0.85em;
+    }
+}

@@ -1,0 +1,168 @@
+:root {
+    --radius-skew-banner: 64px;
+
+    --wait: 150ms;
+    --time: 400ms;
+    --time-out: 600ms;
+    --time-show: 600ms;
+    --time-change: 600ms;
+}
+
+
+.banner {
+    background-color: var(--cor-banner-fundo);
+    height: var(--banner-height-vp); width: 100%;
+    max-height: calc(var(--banner-max-height-vp));
+    padding: var(--padding-banner) 0;
+    margin-bottom: var(--distance-section-banner);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    /* overflow: hidden; */
+}
+.banner .loading-bar {
+    background-image: linear-gradient(
+                                        90deg,
+                                        var(--cor-banner-atrat2),
+                                        var(--cor-banner-atrat1),
+                                        var(--cor-banner-atrat),
+                                        var(--cor-banner-atrat)
+                                    );
+    border-radius: 2px;
+    height: 3px; width: 100%;
+    opacity: 0.9;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.banner .wrapper {
+    height: 100%; width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.banner .wrapper .balls {
+    height: var(--height-balls); width: 100%;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    bottom: 0;
+    transform: translateY(100%);
+    pointer-events: none;
+    gap: 0.5rem;
+}
+.banner .wrapper .balls .ball {
+    border: 1px solid transparent;
+    border-radius: calc(var(--height-balls) / 2);
+    height: 100%;
+
+    overflow: hidden;
+}
+.banner .wrapper .balls .ball:not(.show) {
+    background-color: var(--cor-banner-atrat1);
+    /* aspect-ratio: 1/1; */
+    animation: notShow var(--time) ease-out 1 forwards;
+}
+@keyframes notShow {
+    from {
+        aspect-ratio: 2/1;
+    } to {
+        aspect-ratio: 1/1;
+    }
+}
+.banner .wrapper .balls .ball.show {
+    border: 1px solid var(--cor-banner-atrat1);
+    background-image: linear-gradient(90deg, var(--cor-banner-atrat1), var(--cor-banner-atrat), var(--cor-banner-atrat));
+    animation: moveBall var(--time) ease-in-out 1 forwards;
+}
+@keyframes moveBall {
+    from {
+        aspect-ratio: 1/1;
+    } to {
+        aspect-ratio: 2/1;
+    }
+}
+
+
+
+.banner .arrows {
+    height: auto; width: 100%;
+    max-width: var(--max-width-external);
+    padding: 0 1rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    position: absolute;
+
+    z-index: 1001;
+    pointer-events: none;
+}
+.banner .arrows .left.block,
+.banner .arrows .right.block {
+    pointer-events: none;
+}
+.banner .arrows .left,
+.banner .arrows .right {
+    /* border: 2px solid var(--cor-banner-atrat1); */
+    border-radius: 50%;
+    height: 40px; width: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: var(--cor-banner-fundo);
+    font-size: 1.6rem;
+
+    cursor: pointer;
+    pointer-events: fill;
+    transition: transform 150ms ease-in-out, background-image 150ms ease-in-out;
+}
+.banner .arrows .left {
+    background-image: linear-gradient(90deg, var(--cor-banner-atrat1), var(--cor-banner-atrat));
+}
+.banner .arrows .left:hover {
+    transform: translate(-3px, 1px);
+    background-image: linear-gradient(90deg, var(--cor-banner-atrat1), var(--cor-banner-atrat1));
+}
+.banner .arrows .left p {
+    transform: translate(-1px, 0px);
+}
+.banner .arrows .right {
+    background-image: linear-gradient(90deg, var(--cor-banner-atrat), var(--cor-banner-atrat1));
+}
+.banner .arrows .right:hover {
+    transform: translate(3px, 1px);
+    background-image: linear-gradient(90deg, var(--cor-banner-atrat1), var(--cor-banner-atrat1));
+}
+.banner .arrows .right p {
+    transform: translate(1px, 0px);
+}
+
+@media (max-width: 1024px) {
+    .banner {
+        padding: 0;
+    }
+    .banner .arrows {
+        bottom: 0;
+        transform: translateY(120%);
+    }
+    .banner .wrapper .balls {
+        bottom: 0;
+        transform: translateY(115%);
+    }
+}

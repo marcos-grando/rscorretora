@@ -1,0 +1,286 @@
+
+.logowpp {
+    position: fixed;
+    bottom: calc(0.5rem + 350px);
+    right: 3rem;
+    animation: downIconWpp 350ms ease-in 1 forwards;
+
+    z-index: 1001;
+}
+/* animação pro icon cair quando fechar tela-wpp */
+@keyframes downIconWpp {
+    to {
+        bottom: 2rem;
+    }
+}
+.logowpp img {
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
+.logowpp img.wppimg {
+    height: 50px;
+    transition: all 250ms ease-out;
+    z-index: 1002;
+}
+.logowpp img.wppimg:hover {
+    transform: scale(1.1);
+}
+.logowpp img.rsimg {
+    height: 30px;
+    border-radius: 50%;
+
+    opacity: 0.95;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(25%, -25%);
+    z-index: 1002;
+}
+
+/* 
+    .logowpp => logo do wpp sozinho;
+    .wppimg => logo do wpp com a tela-wpp aberta;
+*/
+
+/* sobe o ícone pra cima ao abrir wpp */
+.residwpp img.wppimg {
+    height: 50px;
+    transition: all 250ms ease-out;
+
+    position: fixed;
+    bottom: 2rem;
+    right: 2.5rem;
+    animation: upIconWpp 350ms ease-out 1 forwards;
+
+    cursor: pointer;
+    z-index: 1002;
+}
+@keyframes upIconWpp {
+    to {
+        bottom: calc(0.5rem + 400px);
+    }
+}
+
+.tela-wpp {
+    background: url('../../public/imgs/rscorretora/wppfundo.jpg');
+    background-position: center;
+    background-size: 200%;
+    box-shadow: 0px 0px 3px var(--cor-resid-wppTela-boxShadow);
+    border-radius: 15px;
+    height: 0; width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;
+    bottom: 2.5rem;
+    right: 3.5rem;
+    overflow: hidden;
+    animation: openWpp 350ms ease-out 1 forwards;
+
+    cursor: pointer;
+    z-index: 1001;
+}
+/* abre o tela-wpp qnd clicado */
+@keyframes openWpp {
+    to {
+        height: 400px; width: 350px;
+    }
+}
+/* escurece o bg-image (fundo wpp) */
+.tela-wpp::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(0, 13, 43, 0.336); */
+    background-color: var(--cor-resid-wppTela-lowBrilho);
+}
+
+/* cabeçalho do tela-wpp (perfil) */
+.tela-wpp .wpp-title {
+    background-color: var(--cor-resid-wppTela-headFundo);
+    box-shadow: 1px 1px 2px var(--cor-resid-wppTela-boxShadow);
+    height: auto; width: 100%;
+    padding: 1rem;
+    padding-left: 1rem;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+    z-index: 102;
+}
+.tela-wpp .wpp-title img {
+    border-radius: 50%;
+    height: 2rem; aspect-ratio: 1/1;
+    margin-right: 0.2rem;
+}
+.tela-wpp .wpp-title .title {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1px;
+
+    color: var(--cor-resid-wppTela-headTexto);
+}
+.tela-wpp .wpp-title .title p:nth-of-type(1) {
+    font-size: 0.95rem;
+}
+.tela-wpp .wpp-title .title p:nth-of-type(2) {
+    font-size: 0.8rem;
+}
+
+
+/* mensagens RS + área de escrever */
+.tela-wpp .msgs {
+    /* border: 1px solid blue; */
+    height: 100%; width: 100%;
+    padding: 4px 2px;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+    z-index: 100002;
+}
+/* mensagens RS */
+.tela-wpp .msgs .wpp-mid {
+    height: 100%; width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 200;
+}
+.tela-wpp .msgs .wpp-mid .rs-date {
+    background-color: var(--cor-resid-wppTela-msgsFundo);
+    border-radius: 5px;
+    width: max-content;
+    padding: 0.1rem 0.4rem 0.2rem 0.4rem;
+    margin: 0.3rem 0 0.5rem 0;
+
+    letter-spacing: 1px;
+
+    color: var(--cor-resid-wppTela-msgsTexto);
+    font-size: 0.7rem;
+    font-weight: 200;
+    text-align: center;
+
+    opacity: 0.9;
+}
+
+.tela-wpp .msgs .wpp-mid .rs-msg {
+    width: 100%;
+    padding: 0 4rem 0 1rem;
+    margin-bottom: 5px;
+
+    transform: translateY(-10px);
+    filter: blur(5px) opacity(0);
+
+    display: flex;
+    animation: rsMsgShow 250ms 550ms ease-out 1 forwards;
+}
+/* animação + delays da aparição de cada "mensagem RS" */
+@keyframes rsMsgShow {
+    to {
+        transform: translateY(0);
+        filter: blur(0) opacity(1);
+    }
+}
+.tela-wpp .msgs .wpp-mid .rs-msg:nth-of-type(2) {
+    animation-delay: 150ms;
+}
+.tela-wpp .msgs .wpp-mid .rs-msg:nth-of-type(3) {
+    animation-delay: 300ms;
+}
+.tela-wpp .msgs .wpp-mid .rs-msg:nth-of-type(4) {
+    animation-delay: 450ms;
+}
+.tela-wpp .msgs .wpp-mid .rs-msg p {
+    background-color: var(--cor-resid-wppTela-msgsFundo);
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+
+    color: var(--cor-resid-wppTela-msgsTexto);
+    font-size: 0.9rem;
+    font-weight: 200;
+}
+
+
+/* área de escrever + envio */
+.tela-wpp .msgs .wpp-msg {
+    height: auto; width: 100%;
+    padding: 0.1rem;
+
+    display: flex;
+    gap: 0.2rem;
+}
+
+.tela-wpp .msgs .wpp-msg .inputext {
+    /* background: #0b1014; */
+    background: var(--cor-resid-wppTela-msgsFundo);
+    border: none;
+    resize: none;
+    outline: none;
+
+    border-radius: 15px;
+    width: 100%;
+    padding: 10px;
+
+    font-family: 'Poppins';
+    font-size: 0.8rem;
+    color: var(--cor-resid-wppTela-msgsTexto);
+
+    overflow-y: hidden;
+}
+
+.tela-wpp .msgs .wpp-msg .submit {
+    border: none;
+    outline: none;
+    height: 100%;
+
+    display: flex;
+    align-items: flex-end;
+}
+.tela-wpp .msgs .wpp-msg .submit button {
+    background: var(--cor-resid-wppTela-atrat);
+    border: none;
+    border-radius: 50%;
+    outline: none;
+
+    height: 38px; width: 38px;
+    aspect-ratio: 1/1;
+    margin-bottom: 2px;
+    margin-right: 2px;
+
+    transform: rotate(0);
+    cursor: pointer;
+    transition: all 250ms ease-out;
+}
+.tela-wpp .msgs .wpp-msg .submit button:hover {
+    transform: scale(1.05) rotate(15deg);
+}
+
+@media (max-width: 1025px) {
+    .logowpp {
+        right: 1em;
+    }
+    @keyframes downIconWpp {
+        to {
+            bottom: calc(var(--mobile-height-menuHeader) + 1em);
+        }
+    }
+    .tela-wpp {
+        bottom: calc(var(--mobile-height-menuHeader) + 1em);
+    }
+    @keyframes upIconWpp {
+        to {
+            bottom: calc( 380px + var(--mobile-height-menuHeader) );
+        }
+    }
+}

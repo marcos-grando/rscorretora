@@ -1,0 +1,26 @@
+
+.slide-wrapper .slide-container .slide-content .slide-item.swiper-slide-visible {
+    transform: scale(0.8);
+    animation: scaleThumbMmax 400ms ease 1 forwards !important;
+}
+@keyframes scaleThumbMmax {
+    from {
+        transform: scale(0.8);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.slide-wrapper .slide-container .slide-content .slide-item:not(.swiper-slide-visible) {
+    transform: scale(1);
+    pointer-events: none;
+    filter: brightness(1) blur(0);
+    animation: scaleThumbMmin 400ms ease 1 forwards;
+}
+@keyframes scaleThumbMmin {
+    to {
+        transform: scale(0.8);
+        filter: brightness(0.75) blur(0);
+    }
+}

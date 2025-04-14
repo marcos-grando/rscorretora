@@ -1,0 +1,340 @@
+:root {
+    --border-radius-each: 2px;
+
+    --mobile-height-lineHeader: 45px;
+    --mobile-height-menuHeader: 60px;
+    --mobile-width-menuHeader: 101%;
+}
+
+header {
+    background-color: var(--cor-header-fundo);
+    border-bottom: 1px solid var(--cor-header-border-sobretom);
+    height: var(--height-header); width: 100%;
+    padding: 0 2rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: var(--size-base-header);
+    position: relative;
+    z-index: 10001;
+}
+
+/* define referência para quando header se torna fixed, não perce o topo */
+header.fixed {
+    top: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 10000;
+    box-shadow: 0px 1px 2px var(--cor-header-shadow2);
+
+    overflow: hidden;
+}
+header.fixed.show {
+    height: 0;
+    opacity: 0;
+    animation: showHeader 250ms ease-out 1 forwards;
+}
+@keyframes showHeader {
+    to {
+        height: var(--height-header);
+        opacity: 1;
+    }
+}
+header.fixed.out {
+    height: var(--height-header);
+    opacity: 1;
+
+    animation: outHeader 250ms ease-out 1 forwards;
+}
+@keyframes outHeader {
+    to {
+        height: 0;
+        opacity: 0;
+    }
+}
+
+
+header .line-header {
+    background-image: linear-gradient(
+        120deg,
+        var(--cor-header-atrat2),
+        var(--cor-header-atrat1),
+        var(--cor-header-atrat1),
+        var(--cor-header-atrat1),
+        var(--cor-header-atrat2)
+    );
+    height: 35%; width: 100%;
+    /* margin-bottom: 15px; */
+
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+}
+header .line-limit {
+    height: 35%; width: 100%;
+    max-width: var(--max-width-container);
+
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+header .line-limit p {
+    width: max-content;
+    display: flex;
+
+    color: var(--cor-header-textoClaro);
+    font-size: 2em;
+    font-weight: 400;
+}
+header .line-limit .redes {
+    position: absolute;
+    right: 1rem;
+}
+header .line-limit .redes-icon {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 1.75em;
+}
+header .line-limit .redes-icon .link {
+    background-color: var(--cor-header-shadow2);
+    border-radius: 3px;
+    padding: 0.32rem 0.48rem;
+    color: var(--cor-header-fundo);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 250ms ease-out;
+}
+header .line-limit .redes-icon .link:hover {
+    transform: scale(1.25) translate(0, 5%);
+}
+header .line-limit .wpp-creci {
+    /* border: 1px solid red; */
+    height: 100%; width: auto;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    position: absolute;
+    left: 1rem;
+}
+header .line-limit .wpp-creci .wpp {
+    display: none;
+}
+
+
+header .content {
+    /* border: 1px solid red; */
+    height: 65%; width: 100%;
+    max-width: var(--max-width-container);
+    margin: 0 2rem;
+
+    color: var(--cor-header-texto);
+    font-weight: 400;
+    font-size: 1em;
+
+    position: relative;
+}
+
+header .content .header-rs {
+    height: 100%; width: max-content;
+
+    display: flex;
+    align-items: center;
+
+    position: absolute;
+    left: 0;
+    z-index: 101;
+    pointer-events: none;
+}
+header .content .header-rs img {
+    border-radius: 50%;
+    height: 60%;
+
+    filter: drop-shadow(-1px 0px 1px rgba(0, 0, 0, 0.5));
+    opacity: 1;
+    z-index: 151;
+}
+header .content .header-rs .rs-line {
+    background-color: var(--cor-header-atrat);
+    height: 50%; width: 2px;
+    border-radius: 1px;
+    margin: 0 1.5em;
+}
+header .content .rs-corretora {
+    line-height: 2em;
+    color: var(--cor-header-texto);
+}
+header .content .rs-corretora p:nth-of-type(1) {
+    font-size: 2em;
+    font-weight: 500;
+}
+header .content .rs-corretora p:nth-of-type(2) {
+    font-size: 1.8em;
+    font-weight: 300;
+}
+
+header .content .header-contato {
+    height: 100%; width: auto;
+
+    display: flex;
+    align-items: center;
+
+    position: absolute;
+    right: 0;
+}
+header .content .header-contato ul {
+    /* border: 1px solid red; */
+    height: 90%; width: auto;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+header .content .header-contato ul li {
+    height: 55%; width: auto;
+
+    list-style: none;
+}
+header .content .header-contato ul li a {
+    background-color: var(--cor-header-fundo-sobretom);
+    border: 1px solid var(--cor-header-border-sobretom);
+    border-radius: var(--border-radius-each);
+    width: 100%; height: 100%;
+    padding: 0.75em;
+
+    display: flex;
+    align-items: center;
+    
+    color: var(--cor-header-texto);
+    text-decoration: none;
+    font-size: 1.7em;
+    
+    cursor: pointer;
+    transition: all 250ms ease-out, color 50ms ease-out;
+}
+header .content .header-contato ul li a:hover {
+    background-color: var(--cor-header-atrat);
+    border: 1px solid var(--cor-header-atrat2);
+    color: var(--cor-header-fundo);
+}
+header .content .header-contato ul li a .border {
+    border-radius: 9px;
+    padding: 0.25rem 0.5rem;
+
+    display: flex;
+    align-items: center;
+
+    transition: all 250ms ease-out;
+}
+header .content .header-contato ul li a .border i {
+    margin-right: 0.5em;
+}
+header .content .header-contato ul li a:hover .border {
+    transform: scale(1.032);
+}
+
+@media (max-width: 1024px) {
+
+    /* height auto para lidar com .content e .line-limit corretamente */
+    header {
+        height: auto;
+        max-height: 100vh;
+        padding: 0;
+    }
+
+    /* não necessário */
+    header.fixed {
+        display: none;
+    }
+    
+    /* tamanho da linha vermelha com icones e creci */
+    header .line-header {
+        height: var(--mobile-height-lineHeader); width: 100%;
+        margin-bottom: -1rem;
+    
+        position: relative;
+    }
+    header .line-limit {
+        height: var(--mobile-height-lineHeader); width: 100%;
+        max-height: 100vh;
+        padding: 0 2rem;
+        position: absolute;
+        top: 0;
+    }
+
+    header .line-limit .redes-icon {
+        font-size: 4em;
+    }
+
+    header .line-limit .wpp-creci {
+        font-size: 2em;
+    }
+    header .line-limit .wpp-creci .wpp {
+        background-color: var(--cor-header-shadow2);
+        border-radius: 3px;
+        padding: 0.32rem 0.48rem;
+        margin-left: 1rem;
+    
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        color: var(--cor-header-fundo);
+        text-decoration: none;
+        font-size: 2em;
+    
+        display: flex;
+        transition: all 250ms ease-out;
+        transform: translateY(-2%);
+    }
+    header .line-limit .wpp-creci .wpp:hover {
+        transform: scale(1.25) translate(0, 5%);
+    }
+    
+    /* .content com height auto para não conflitar o tamanho do .header-menu com o .header-limit */
+    header .content {
+        background-color: transparent;
+        height: auto; width: 100%;
+        max-width: var(--max-width-container);
+        max-height: 100vh;
+        margin: 0 2rem;
+    
+        color: var(--cor-header-texto);
+        font-weight: 400;
+        font-size: 1em;
+    
+        position: absolute;
+        top: 0;
+    }
+
+    /* contém a logo */
+    header .content .header-rs {
+        /* border: 1px solid red; */
+        height: var(--mobile-height-lineHeader);
+
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translate(-50%, 35%);
+    }
+    header .content .header-rs img {
+        height: 100%;
+    }
+    header .content .header-rs .rs-line {
+        display: none;
+    }
+    header .content .rs-corretora {
+        display: none;
+    }
+    header .content .header-contato {
+        display: none;
+    }
+}

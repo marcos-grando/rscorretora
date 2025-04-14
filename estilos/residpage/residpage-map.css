@@ -1,0 +1,174 @@
+.div-map {
+    background-color: var(--cor-resid-divMap-fundo);
+    height: auto; width: 100%;
+    margin-bottom: calc( var(--distance-section) - 32px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.div-map .map {
+    /* border: 1px solid red; */
+    height: auto; width: 100%;
+    max-width: var(--max-width-content);
+    padding: var(--residpage-padd-map);
+
+    display: flex;
+    gap: 2rem;
+}
+.div-map .map iframe {
+    border: 1px solid var(--cor-resid-topBorder);
+    height: 400px; width: 60%;
+    box-shadow: -1px 1px 3px var(--cor-resid-shadow);
+}
+.div-map .map .map-text {
+    /* border: 1px solid black; */
+    height: auto; width: 40%;
+    padding: var(--residpage-padd-maptext);
+
+    font-size: calc( var(--size-base-all) - 2px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.div-map .map .map-text .titlemap,
+.div-map .map .map-text .contato {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.div-map .map .map-text .titlemap .title {
+    width: 100%;
+    font-size: 1.35em;
+    font-weight: 500;
+}
+.div-map .map .map-text .titlemap .local-map {
+    width: 100%;
+    opacity: 0.9;
+}
+
+.div-map .map .map-text .titlemap .btn-rotas {
+    border-bottom: 1px solid transparent;
+    border-radius: 2px;
+    width: max-content;
+    padding-bottom: 0.25rem;
+    margin-top: 0.15rem;
+
+    display: flex;
+    align-items: flex-end;
+    gap: 0.25rem;
+    opacity: 0.9;
+
+    text-decoration: none;
+    transition: all 250ms ease-out;
+}
+.div-map .map .map-text .titlemap .btn-rotas:hover {
+    border-bottom: 1px solid var(--cor-resid-atrat2);
+}
+.div-map .map .map-text .titlemap .btn-rotas i {
+    color: var(--cor-resid-atrat2);
+
+    position: relative;
+    transform: translateY(-2px);
+
+    transition: all 150ms ease-out;
+}
+.div-map .map .map-text .titlemap .btn-rotas:hover i {
+    transform: translate(-1px, -3px) scale(1.035);
+}
+.div-map .map .map-text .titlemap .btn-rotas p {
+    color: var(--cor-resid-atrat3);
+    font-size: 0.85em;
+    font-weight: 600;
+
+    transition: all 250ms ease-out;
+}
+.div-map .map .map-text .titlemap .btn-rotas:hover p {
+    color: var(--cor-resid-atrat2);
+}
+
+
+.div-map .map .map-text .contato {
+    width: 100%;
+    align-items: flex-end;
+}
+.div-map .map .map-text .contato div {
+    display: flex;
+    gap: 5px;
+}
+
+
+.div-map .map .map-text .contato .wpp {
+    border: 2px solid var(--cor-resid-atrat2);
+    border-radius: 3px;
+    box-shadow: -1px 1px 2px var(--cor-resid-shadow);
+    width: max-content;
+    padding: 0.5rem 1rem;
+
+    display: flex;
+    gap: 0.35rem;
+
+    color: var(--cor-resid-atrat2);
+    cursor: pointer;
+    transition: all 250ms ease-out;
+}
+.div-map .map .map-text .contato .wpp:hover {
+    background-image: linear-gradient(90deg, var(--cor-resid-atrat1), var(--cor-resid-atrat2));
+    color: var(--cor-resid-divMap-fundo);
+    font-weight: 400;
+}
+.div-map .map .map-text .contato .wpp p {
+    font-size: 0.85em;
+    font-weight: 500;
+}
+.div-map .map .map-text .contato .wpp i {
+    font-size: 1.05em;
+    transform: translateY(1px);
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    :root {
+        --residpage-padd-maptext: 3.2em 0;
+        --residpage-padd-map: 2em;
+    }
+    .div-map .map {
+        display: flex;
+    }
+    .div-map .map .map-text .titlemap,
+    .div-map .map .map-text .contato {
+        gap: 0.5em;
+    }    
+}
+@media (max-width: 768px) {
+    :root {
+        --residpage-padd-maptext: 0 1em;
+        --residpage-padd-map: 3em 1em;
+    }
+    .div-map .map {
+        padding: var(--residpage-padd-map);
+        display: flex;
+        flex-direction: column;
+    }
+    .div-map .map .map-text {
+        gap: 2em;
+    }
+    .div-map .map .map-text .titlemap,
+    .div-map .map .map-text .contato {
+        gap: 0.5em;
+    }
+    .div-map .map iframe {
+        border: 1px solid var(--cor-resid-topBorder);
+        height: 400px; width: 100%;
+        box-shadow: -1px 1px 3px var(--cor-resid-shadow);
+    }
+    .div-map .map .map-text {
+        height: auto; width: 100%;
+        padding: var(--residpage-padd-maptext);
+    
+        display: flex;
+        flex-direction: column;
+    }
+}
