@@ -127,7 +127,8 @@ function App() {
         <>
             <TopAndRedirect />
             <Routes>
-                <Route path="/"
+                <Route
+                    path="/"
                     element={
                         <>
                             {loading && <LoadingPage />}
@@ -173,7 +174,7 @@ function App() {
                                             thumbs={filterInfos((empreendimento) => empreendimento['infos-main']['local'] !== 'Campinas, São José')}
                                         />
                                     </Suspense>
-                                    
+
                                     <Suspense fallback={<div>Carregando...</div>}>
                                         <Slidemove
                                             title="Kobrasol, São José"
@@ -208,7 +209,7 @@ function App() {
                 } />
             </Routes>
         </>
-    )
+    );
 }
 
 export default App;

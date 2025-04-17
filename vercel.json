@@ -5,6 +5,18 @@
             "destination": "/index.html"
         }
     ],
+    "redirects": [
+        {
+            "source": "http://raquelscorretora.com.br",
+            "destination": "https://www.raquelscorretora.com.br",
+            "permanent": true
+        },
+        {
+            "source": "https://raquelscorretora.com.br",
+            "destination": "https://www.raquelscorretora.com.br",
+            "permanent": true
+        }
+    ],
     "cleanUrls": true,
     "trailingSlash": false
 }

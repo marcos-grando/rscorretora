@@ -12,6 +12,9 @@ export default defineConfig({
         outDir: 'dist',
         emptyOutDir: true
     },
+    server: {
+        historyApiFallback: true,
+    },
     resolve: {
         alias: {
             '@': '/src'

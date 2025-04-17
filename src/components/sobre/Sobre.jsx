@@ -68,7 +68,7 @@ function Sobre({ sobre, onlyPage }) {
                                             <p>{texto}</p>
                                         </div>
                                     ))}
-                                    <Link to={Linkto({ type: 'sobre' })}>
+                                    <Link to={Linkto({ type: 'menuSobre' })}>
                                         <button>Texto completo <span>›</span> </button>
                                     </Link>
                                 </div>
