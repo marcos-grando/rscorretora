@@ -201,7 +201,7 @@ function App() {
                 <Route path="/empreendimentos/:id" element={
                     <Residencial data={infos} />
                 } />
-                <Route path="/blog-space/" element={
+                <Route path="/blog-space" element={
                     <Blog type={"onlypage"} />
                 } />
                 <Route path="/blog-space/:id" element={
