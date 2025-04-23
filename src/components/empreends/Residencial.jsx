@@ -8,7 +8,7 @@ import ResidMaps from "./ResidMaps";
 import ResidContent from "./ResidContent";
 import Slidemove from "../sections/Slidemove";
 import Quadrados from "../Quadrados";
-import LoadingOrNotFound from "../reuts/loadingOrNotFound";
+import LoadingOrPageNotfound from "../reuts/LoadingOrPageNotfound";
 
 function Residencial() {
 
@@ -126,9 +126,9 @@ function Residencial() {
     //     return <ResidException type={"notFound"} />
     // }
     if (residencial === null) {
-        return <LoadingOrNotFound type={"loading"} />
+        return <LoadingOrPageNotfound type={"loading"} />
     } else if (residencial === false ) {
-        return <LoadingOrNotFound type={"notFound"} />
+        return <LoadingOrPageNotfound type={"notFound"} />
     }
 
     return (

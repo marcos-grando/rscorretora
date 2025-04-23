@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Linkto from "./Linkto";
 import Header from "../Header";
 
-function LoadingOrNotFound({ type }) {
+function LoadingOrPageNotfound({ type }) {
 
     switch (type) {
         case "notFound":
@@ -58,4 +58,4 @@ function LoadingOrNotFound({ type }) {
     };
 };
 
-export default LoadingOrNotFound;
+export default LoadingOrPageNotfound;

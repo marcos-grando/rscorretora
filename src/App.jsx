@@ -4,7 +4,7 @@ import LoadingPage from "./components/LoadingPage";
 import Header from "./components/Header";
 import Banner from "./components/banner/Banner";
 import TopAndRedirect from "./components/TopAndRedirect";
-import LoadingOrNotFound from "./components/reuts/loadingOrNotFound";
+import LoadingOrPageNotfound from "./components/reuts/LoadingOrPageNotfound";
 
 const Footer = lazy(() => import('./components/Footer'));
 const Sobre = lazy(() => import('./components/sobre/Sobre'));
@@ -207,7 +207,7 @@ function App() {
                     <Newspage />
                 } />
                 <Route path="*" element={
-                    <LoadingOrNotFound type={"notFound"} />
+                    <LoadingOrPageNotfound type={"notFound"} />
                 } />
             </Routes>
         </>
