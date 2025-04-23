@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Linkto from "../reuts/Linkto";
 
-function Item({ eachNews, noImg }) {
+function Item({ eachNews, noImg, i }) {
 
     return (
         <Link className="item" title="Ir para a reportagem"

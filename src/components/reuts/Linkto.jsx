@@ -45,7 +45,7 @@ function Linkto({ type, data, text }) {
         case "blog-slug":
             return `/blog-space/${generateSlug(data.ref + data.title)}`;
 
-        default:
+        default: /* utiliza-se "others" geralmente */
             return "/";
     }
 }

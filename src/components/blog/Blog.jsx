@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import Header from "../Header";
 import Footer from "../Footer";
 import Item from "./Item";
-import Quadrados from "../Quadrados";
 import { Link } from "react-router-dom";
+import BlogSpace from "./BlogSpace";
 
 function Blog({ type, noImg, nNow }) {
 
@@ -19,7 +19,7 @@ function Blog({ type, noImg, nNow }) {
 
     const [news, setNews] = useState([]);
 
-    const [visibleRows, setVisibleRows] = useState(2);
+    const [visibleRows, setVisibleRows] = useState(1);
     const [itemsPerRow, setItemsPerRow] = useState(null);
 
     const [gridStyle, setGridStyle] = useState({ gridTemplateColumns: "repeat(4, 1fr)" });
@@ -38,14 +38,15 @@ function Blog({ type, noImg, nNow }) {
     // itemsToShow calcula nº de rows + news e retorna o valor para ser renderizado inicialmente
     const itemsToShow = visibleRows * itemsPerRow;
     const loadMore = () => {
-        setVisibleRows(prev => prev + itemsPerRow);
+        setVisibleRows(prev => prev + 1);
     };
+
     useEffect(() => {
         const updateItemsPerRow = () => {
 
             const width = window.innerWidth;
             if (width <= 450) {
-                setItemsNews(2);
+                setItemsNews(1);
                 setItemsPerRow(1);
                 setGridStyle({ gridTemplateColumns: "repeat(1, 1fr)" })
 
@@ -71,7 +72,6 @@ function Blog({ type, noImg, nNow }) {
         return () => window.removeEventListener('resize', updateItemsPerRow);
     }, []);
 
-
     return (
         <>
             {
@@ -80,27 +80,7 @@ function Blog({ type, noImg, nNow }) {
                         case "onlypage":
                             return <>
                                 <Header />
-                                <section className="blogpage">
-                                    <div className="wrapper">
-                                        <div className="blog-title">
-                                            <div>
-                                                <p className="title">Blog Space RS</p>
-                                                <div className="line"></div>
-                                            </div>
-                                            <p>Reportagens sobre o trabalho da corretora Raquel silva e informações sobre o mercado imobiliário.</p>
-                                        </div>
-                                        <div className="container" style={gridStyle}>
-                                            {news.slice(0, itemsToShow).map((eachNews, i) => (
-                                                <Item key={i} eachNews={eachNews} i={i} />
-                                            ))}
-                                        </div>
-                                        {itemsToShow < news.length && (
-                                            <button className="load-more" onClick={loadMore} >
-                                                Ver mais
-                                            </button>
-                                        )}
-                                    </div>
-                                </section>
+                                <BlogSpace news={news} itemsToShow={itemsToShow} loadMore={loadMore} gridStyle={gridStyle} />
                                 <Footer />
                             </>
 
@@ -111,7 +91,50 @@ function Blog({ type, noImg, nNow }) {
                                 ))}
                             </section>
 
-                        default:
+                        case "notFound":
+                            return <>
+                                <Header />
+                                <section className="newspage notFound"
+                                    style={{
+                                        height: "100%", width: "100%",
+                                        display: "flex", flexDirection: "column",
+                                        justifyContent: "center", alignItems: "center",
+                                        position: "absolute", top: "0"
+                                    }}
+                                >
+                                    <p className="chamada">NOTÍCIA NÃO ENCONTRADA</p>
+                                    <div className="wrapper"
+                                        style={{
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            justifyContent: "center",
+                                            alignItems: "center",
+                                            gap: "2em"
+                                        }}
+                                    >
+                                        <div className="container">
+                                            <div className="title" style={{ margin: "auto" }}>
+                                                <p className="title" style={{ textAlign: "center", fontSize: "1.8em" }}>Essa notícia está indisponível ou foi removida!</p>
+                                            </div>
+                                        </div>
+                                        <Link to={"/blog-space"}
+                                            style={{
+                                                backgroundColor: "var(--cor-empreends-atrat2)",
+                                                borderRadius: "2px",
+                                                padding: "12px 10px",
+                                                color: "white",
+                                                fontSize: "1.15em",
+                                                fontWeight: "400",
+                                                boxShadow: "1px 1px 2px #0b1014"
+                                            }}
+                                        >
+                                            Ir para Blog Space
+                                        </Link>
+                                    </div>
+                                </section>
+                            </>
+
+                        default: /* Utilizo "other" geralmente */
                             return <section className="news">
                                 <div className="wrapper">
                                     <div className="news-title">

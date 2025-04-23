@@ -7,6 +7,19 @@ import Quadrados from "../Quadrados";
 
 function Newspage() {
 
+    const [news, setNews] = useState([]);
+
+
+    useEffect(() => {
+        const fetchNews = async () => {
+            const response = await fetch('/blog.json');
+            const data = await response.json();
+            setNews(data);
+        }
+        fetchNews();
+    }, []);
+
+
     const generateSlug = (title) => {
         return title
             .toLowerCase()
@@ -18,19 +31,10 @@ function Newspage() {
             .trim();
     };
     const { id } = useParams();
-    const [news, setNews] = useState([]);
+    const eachNews = news.length > 0 ? news.find((n) => generateSlug(n.ref + n.title) === id) : null;
 
-    useEffect(() => {
-        const fetchNews = async () => {
-            const response = await fetch('/blog.json');
-            const data = await response.json();
-            const selectNews = data.length > 0 ? data.find((n) => generateSlug(n.ref + n.title) === id) : null;
-            setNews(selectNews || null);
-        }
-        fetchNews();
-    }, []);
-
-    if (!news) return <Blog type={"notFound"} />
+    console.log(eachNews)
+    if (!eachNews) return <p>Notícia não encontrada...</p>;
 
     return (
         <>
@@ -41,20 +45,20 @@ function Newspage() {
                     <div className="container">
 
                         <div className="title">
-                            <p className="title">{news.title}</p>
+                            <p className="title">{eachNews.title}</p>
                             <div className="public">
                                 <i className="fa fa-clock"></i>
-                                <p>Publicado em {news.time} </p>
+                                <p>Publicado em {eachNews.time} </p>
                             </div>
-                            <p className="desc">{news.desc}</p>
+                            <p className="desc">{eachNews.desc}</p>
                         </div>
                         <div className="img">
-                            <img src={news.img} alt="" />
-                            <p>Fotografia por <a target="_blank" href={news.autorlink}>{news.autorimg}</a></p>
+                            <img src={eachNews.img} alt="" />
+                            <p>Fotografia por <a target="_blank" href={eachNews.autorlink}>{eachNews.autorimg}</a></p>
                         </div>
                         <div className="content">
                             <div className="texto">
-                                {news?.texto?.map((texto, i) => (
+                                {eachNews['texto'].map((texto, i) => (
                                     <div key={i}>
                                         {texto['subtitle'] && <p className="subtitle">{texto.subtitle}</p>}
                                         {texto['frases'].map((frase, ii) => (
@@ -66,7 +70,7 @@ function Newspage() {
 
                             <div className="relacionais-newspage">
                                 <p className="title">LEIA MAIS</p>
-                                <Blog type={"relacionais"} nNow={news.ref} />
+                                <Blog type={"relacionais"} nNow={eachNews.ref} />
                             </div>
                         </div>
                     </div>

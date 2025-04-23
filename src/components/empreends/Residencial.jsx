@@ -8,9 +8,94 @@ import ResidMaps from "./ResidMaps";
 import ResidContent from "./ResidContent";
 import Slidemove from "../sections/Slidemove";
 import Quadrados from "../Quadrados";
+import LoadingOrNotFound from "../reuts/loadingOrNotFound";
 
-function Residencial({ data }) {
+function Residencial() {
 
+    // exceção especial para o caso "Premiatto & Agapito" (na existência outros casos, mudar isso)
+    const subType1 = "agapito";
+    const subType2 = "premiatto";
+    const [subType, setSubType] = useState(subType1)
+    const [subResidencial, setSubResidencial] = useState(null)
+    const [isSpecialCase, setIsSpecialCase] = useState(false)
+
+    // define a string usada como classe e 'type' em clickType
+    const condType = "cond";
+    const aptoType = "apto";
+    const planType = "plantas";
+    const allType = [condType, aptoType, planType]
+
+    const [contentType, setContentType] = useState(condType);
+    const clickType = (type) => {
+        setContentType(type);
+    };
+    const subResidType = (type) => {
+        setSubType(type);
+    };
+
+    const [residencial, setResidencial] = useState(null);
+    const [construtora, setConstrutora] = useState(null);
+    const [allInfos, setAllInfos] = useState(null);
+
+    const { id } = useParams();
+
+    const generateSlug = (title) => {
+        return title
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/\s+/g, "-")
+            .replace(/[^a-z0-9-]/g, "")
+            .replace(/-+/g, "-")
+            .trim();
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch('/construtoras.json');
+            const data = await response.json();
+
+            let findConstrutora = null;
+            let findResidencial = null;
+
+            const findAllInfos = data.map(construtora => ({
+                empreendimentos: construtora.empreendimentos.filter(emp => generateSlug(emp["infos-main"].title + "-" + emp["infos-main"].local) !== id).map(emp => ({
+                    "id-nome": emp["id-nome"],
+                    "infos-main": emp["infos-main"]
+                }))
+            }));
+
+            for (const construtora of data) {
+                console.log("const: ", data);
+                for (const empreendimento of construtora.empreendimentos) {
+
+                    const findSlug = generateSlug(
+                        empreendimento["infos-main"].title + "-" + empreendimento["infos-main"].local
+                    );
+                    if (findSlug === id && !findResidencial) {
+                        findResidencial = empreendimento;
+                        findConstrutora = {
+                            "const-nome": construtora["const-nome"],
+                            "logo": construtora.logo
+                        };
+                    }
+                }
+            }
+
+            setAllInfos(findAllInfos);
+            setConstrutora(findConstrutora || false);
+            setResidencial(findResidencial || false);
+
+            const specialCase = findResidencial && !("infos-cond" in findResidencial);
+            if (specialCase) {
+                setSubResidencial(findResidencial[subType]);
+                setIsSpecialCase(true);
+            }
+        };
+        fetchData();
+    }, [id, subType]);
+
+    // Cuida da exibição por dif telas
     const [isMob, setIsMob] = useState(false);
     const [numQuad, setNumQuad] = useState(7);
 
@@ -35,76 +120,16 @@ function Residencial({ data }) {
         return () => window.removeEventListener("resize", updateIsMob);
     }, []);
 
-
-    // exceção especial para o caso "Premiatto & Agapito" (na existência outros casos, mudar isso)
-    const subType1 = "agapito";
-    const subType2 = "premiatto";
-    const [subType, setSubType] = useState(subType1)
-    const [subResidencial, setSubResidencial] = useState(null)
-    const [isSpecialCase, setIsSpecialCase] = useState(false)
-
-    // define a string usada como classe e 'type' em clickType
-    const condType = "cond";
-    const aptoType = "apto";
-    const planType = "plantas";
-    const allType = [condType, aptoType, planType]
-
-    const [contentType, setContentType] = useState(condType);
-
-    const [residencial, setResidencial] = useState(null);
-    const [construtora, setConstrutora] = useState(null);
-
-    const { id } = useParams();
-
-    const generateSlug = (title) => {
-        return title
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .replace(/\s+/g, "-")
-            .replace(/[^a-z0-9-]/g, "")
-            .replace(/-+/g, "-")
-            .trim();
-    };
-
-    const subResidType = (type) => {
-        setSubType(type);
+    // if (residencial === false) {
+    //     return <ResidException type={"loading"} />
+    // } else if (residencial === null ) {
+    //     return <ResidException type={"notFound"} />
+    // }
+    if (residencial === null) {
+        return <LoadingOrNotFound type={"loading"} />
+    } else if (residencial === false ) {
+        return <LoadingOrNotFound type={"notFound"} />
     }
-    const clickType = (type) => {
-        setContentType(type);
-    };
-
-    useEffect(() => {
-        const foundConstrutora = data.find(construtora =>
-            construtora.empreendimentos.some(empreendimento =>
-                generateSlug(empreendimento["infos-main"].title + "-" + empreendimento["infos-main"].local) === id
-            )
-        );
-
-        if (foundConstrutora) {
-            const foundResidencial = foundConstrutora.empreendimentos.find(empreendimento =>
-                generateSlug(empreendimento["infos-main"].title + "-" + empreendimento["infos-main"].local) === id
-            );
-
-            setConstrutora(foundConstrutora);
-            setResidencial(foundResidencial)
-
-            const specialCase = !("infos-cond" in foundResidencial);
-            if (specialCase) {
-                setSubResidencial(foundResidencial[subType]);
-                setIsSpecialCase(true);
-            }
-        }
-    }, [id, data, subType]);
-
-    if (!construtora) {
-        return <p>Construtora não encontrado</p>;
-    }
-    if (!residencial) {
-        return <p>Residencial não encontrado</p>;
-    }
-
-    // console.log(subResidencial['infos-cond']['imagens-cond'])
 
     return (
         <>
@@ -115,7 +140,6 @@ function Residencial({ data }) {
                 <Quadrados LorR={'right'} TorB={'top'} UorD={'end'} SorE={'up'} maxSquare={numQuad} />
                 <div className="wrapper">
                     <ResidHead residencial={residencial} construtora={construtora} />
-
                     <div className="container">
                         {isSpecialCase && (
                             <div className="sub-opts">
@@ -184,7 +208,7 @@ function Residencial({ data }) {
                 <Slidemove
                     title="Outros empreendimentos!"
                     subtitle=""
-                    thumbs={data}
+                    thumbs={allInfos}
                 />
 
                 <Quadrados LorR={'left'} TorB={'bottom'} UorD={'start'} SorE={'down'} maxSquare={7} />

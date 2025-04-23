@@ -4,6 +4,7 @@ import LoadingPage from "./components/LoadingPage";
 import Header from "./components/Header";
 import Banner from "./components/banner/Banner";
 import TopAndRedirect from "./components/TopAndRedirect";
+import LoadingOrNotFound from "./components/reuts/loadingOrNotFound";
 
 const Footer = lazy(() => import('./components/Footer'));
 const Sobre = lazy(() => import('./components/sobre/Sobre'));
@@ -117,11 +118,9 @@ function App() {
         "saint-michel"
     ];
     // renderiza na ordem da lista acima, e não na lista do arquivo;
-    const bannerDestaquesRender = bannerDestaques
-        .flatMap(id =>
-            filterInfos((empreendimento) => empreendimento['id-nome'] === id)
-        )
-        .filter(Boolean);;
+    const bannerDestaquesRender = bannerDestaques.flatMap(id =>
+        filterInfos((empreendimento) => empreendimento['id-nome'] === id)
+    ).filter(Boolean);
 
     return (
         <>
@@ -207,9 +206,16 @@ function App() {
                 <Route path="/blog-space/:id" element={
                     <Newspage />
                 } />
+                <Route path="*" element={
+                    <LoadingOrNotFound type={"notFound"} />
+                } />
             </Routes>
         </>
     );
 }
 
 export default App;
+
+/*
+    data={infos} => Apenas criar uma requisição .json em Residencial.jsx de acordo com o slug/id para trazer o conteúdo.
+*/
