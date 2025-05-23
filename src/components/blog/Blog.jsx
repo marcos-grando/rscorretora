@@ -46,9 +46,9 @@ function Blog({ type, noImg, nNow }) {
 
             const width = window.innerWidth;
             if (width <= 450) {
-                setItemsNews(1);
-                setItemsPerRow(1);
-                setGridStyle({ gridTemplateColumns: "repeat(1, 1fr)" })
+                setItemsNews(2);
+                setItemsPerRow(2);
+                setGridStyle({ gridTemplateColumns: "repeat(2, 1fr)" })
 
             } else if (width > 451 && width <= 768) {
                 setItemsNews(2);
