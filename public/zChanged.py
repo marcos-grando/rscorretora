@@ -13,32 +13,32 @@ def idInUrl(the_url):
     return the_url.split("/residenciais/")[1].split("/")[0].lower()
 
 array_urls = [
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591609/rscorretora/residenciais/julio-schappo/thumb/HTwuVAYzmp_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591503/rscorretora/residenciais/majestic/thumb/tbzuroMvGL_nByiXJXysa_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591673/rscorretora/residenciais/vancouver/thumb/vyzWEQsxNd_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1756919878/rscorretora/residenciais/Premiatto/thumb/cqyjgtkh9mrx750wt9ff.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1756920113/rscorretora/residenciais/Agapito/thumb/bpgtdacscwemw6lzrpto.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591511/rscorretora/residenciais/privilege/thumb/jWKPbgVJTt_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591701/rscorretora/residenciais/solo-blvd/thumb/hRizQHBhCS_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591542/rscorretora/residenciais/don/thumb/MmZaZoQTSa_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591693/rscorretora/residenciais/ville-de-luxembourg/thumb/qTCrlmTYMl_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591653/rscorretora/residenciais/riviere-petrusse/thumb/cCWydHTYuC_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591485/rscorretora/residenciais/belle-ville/thumb/UdwkqpVYwt_EKABgXkcaX_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591533/rscorretora/residenciais/valentina/thumb/xBiCOtHIgO_AqJXDMDycJ_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591589/rscorretora/residenciais/colina-de-sao-pedro/thumb/WGwkCEoQxU_kYxQYzjrjB_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591687/rscorretora/residenciais/villa-vauban/thumb/OyRReQmEiT_ogKNLVvVGU_brAdntnRKu_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591549/rscorretora/residenciais/reserva/thumb/DoWCchyBVs_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591562/rscorretora/residenciais/my-hub/thumb/HYmaLqnvLB_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591569/rscorretora/residenciais/vivarte/thumb/kvMBraRgFS_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591575/rscorretora/residenciais/boulevard-atlantique/thumb/qHBGlTYJkA_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591494/rscorretora/residenciais/lidia-dircksen/thumb/UUDcQKIQlt_lieokmzfWy_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591554/rscorretora/residenciais/voga/thumb/snPLptSUic_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591617/rscorretora/residenciais/lyon/thumb/lytDzJcXDF_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591602/rscorretora/residenciais/boulevard-royal/thumb/SZaxAQnJMC_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591522/rscorretora/residenciais/santos-dumont/thumb/epAPLmrRZw_viDFrOzuQU_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591597/rscorretora/residenciais/sophia/thumb/qGXLwzzclH_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591666/rscorretora/residenciais/tremont/thumb/StsVTdWkOC_thumb.jpg",
-    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591659/rscorretora/residenciais/saint-michel/thumb/wMXWrxFFTv_thumb.jpg"
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591608/rscorretora/residenciais/julio-schappo/logo/XgeHlVJwIx_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591499/rscorretora/residenciais/majestic/logo/obBFplfnXI_lGTdsNOaTX_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591671/rscorretora/residenciais/vancouver/logo/mvwRDJVUAn_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1756920238/rscorretora/residenciais/Premiatto/logo/k1j4emc1wtvqh10yz4ib.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1756920225/rscorretora/residenciais/Agapito/logo/ftb74iqoqedeqbr3rllu.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591507/rscorretora/residenciais/privilege/logo/zzrjmPehjy_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591699/rscorretora/residenciais/solo-blvd/logo/gwYhzXVhQc_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591539/rscorretora/residenciais/don/logo/sdnTcODZrG_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591691/rscorretora/residenciais/ville-de-luxembourg/logo/UnRLSCgksy_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591651/rscorretora/residenciais/riviere-petrusse/logo/TjJOMERddw_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591481/rscorretora/residenciais/belle-ville/logo/YMNbAjFjJf_CcYtDQkOWD_HMBqGxUDhI_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591530/rscorretora/residenciais/valentina/logo/hqyswlEStX_RqMmHDikFQ_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591584/rscorretora/residenciais/colina-de-sao-pedro/logo/RIoYMIGWXp_VxkbeHoNoX_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591680/rscorretora/residenciais/villa-vauban/logo/rTsmRjzmiv_laVOEKBNUG_pdbZUQqEEN_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591546/rscorretora/residenciais/reserva/logo/itWFdbUhXX_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591559/rscorretora/residenciais/my-hub/logo/ElbrgcGYim_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591566/rscorretora/residenciais/vivarte/logo/nhNgWAMXSq_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591573/rscorretora/residenciais/boulevard-atlantique/logo/fuVycVMVZU_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591492/rscorretora/residenciais/lidia-dircksen/logo/lhUBwocVHZ_gfHtOGCwsk_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591554/rscorretora/residenciais/voga/logo/vzTeOLtcnM_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591613/rscorretora/residenciais/lyon/logo/UwhBvsMrgc_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591600/rscorretora/residenciais/boulevard-royal/logo/MErTwXWGXi_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591519/rscorretora/residenciais/santos-dumont/logo/AZXLOaRspx_ujcOrbVzGB_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591594/rscorretora/residenciais/sophia/logo/SGcMOkHorh_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591664/rscorretora/residenciais/tremont/logo/MRhJsAjXOK_logo.png",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591656/rscorretora/residenciais/saint-michel/logo/FRHpGLWBkn_logo.png"
 ]
 
 
@@ -49,7 +49,7 @@ for a, const in enumerate(data):
         alvo = resid['id-nome']
         result = next((url for url in array_urls if alvo.lower() in url.lower()), None)
         if result:
-            resid['infos-main']['thumb'] = result
+            resid['infos-main']['logo'] = result
             print('true')
         else: print('false')
         
