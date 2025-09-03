@@ -1,0 +1,171 @@
+[
+    [
+        {
+            "id": "001",
+            "tipo": "residencial",
+            "construtora": "Nome da Construtora 1",
+            "constlogo": "url-imgs-const.com.br/01-const-logo.png",
+            "logo": "url-imgs.com.br/001-empreend-logo.png",
+            "thumb": "url-imgs.com.br/001-empreend-thumb.png",
+            "subtitle": "Residencial",
+            "title": "Nome do Residencial",
+            "valor": 675000.0,
+            "status": "Em construção",
+            "local": "Kobrasol, São José",
+            "lati": -27.596168672163085,
+            "long": -48.60687793857005,
+            "condinfo": [
+                "Total de 127 Unidades",
+                "Total de 159 Garagens",
+                "Salão de Festas",
+                "Espaço Gourmet",
+                "Espaço Fitness",
+                "RoofTop",
+                "Piscina"
+            ],
+            "condimg": [
+                {
+                    "img": "url-imgs.com.br/001-empreend-imgs-condominio-1.jpg",
+                    "title": "Espaço Gourmet",
+                    "desc": "Descrição da Imagem 1"
+                },
+                {
+                    "img": "url-imgs.com.br/001-empreend-imgs-condominio-2.jpg",
+                    "title": "Espaço Yoga",
+                    "desc": "Descrição da Imagem 2"
+                }
+            ],
+            "aptoinfo": [
+                "Aptos de 1 à 3 Dormitórios",
+                "Sacada com Churrasqueira",
+                "Área de Serviço",
+                "Churrasqueira",
+                "Vista ao Mar"
+            ],
+            "aptoimg": [
+                {
+                    "img": "url-imgs.com.br/001-empreend-imgs-apto-1.jpg",
+                    "title": "Quarto 1",
+                    "desc": "Descrição da Imagem 1"
+                },
+                {
+                    "img": "url-imgs.com.br/001-empreend-imgs-apto-2.jpg",
+                    "title": "Banheiro",
+                    "desc": "Descrição da Imagem 2"
+                }
+            ],
+            "plantinfo": [
+                "2 Planta Aptos c/ 2 Suítes",
+                "3 Plantas Aptos c/ 2 Dorms (1 Suíte)"
+            ],
+            "plantimg": [
+                {
+                    "img": "url-imgs.com.br/001-empreend-imgs-plantas-1.jpg",
+                    "title": "2 Suítes",
+                    "desc": "Descrição da Planta 1"
+                },
+                {
+                    "img": "url-imgs.com.br/001-empreend-imgs-plantas-2.jpg",
+                    "title": "2 Dorms (1 Suíte)",
+                    "desc": "Descrição da Planta 2"
+                }
+            ]
+        },
+        {
+            "id": "00151",
+            "tipo": "terrenos",
+            "logo": "url-imgs.com.br/00151-terrenos-logo.png",
+            "thumb": "url-imgs.com.br/00151-terrenos-thumb.png",
+            "subtitle": "Terreno",
+            "title": "Nome/título do Terreno",
+            "valor": 2475000.0,
+            "areaX": 72,
+            "areaY": 128,
+            "local": "Kobrasol, São José",
+            "lati": -27.596168672163085,
+            "long": -48.60687793857005,
+            "terrenoimg": [
+                "url-imgs.com.br/00151-terrenos-imgs-condominio-1.jpg",
+                "url-imgs.com.br/00151-terrenos-imgs-condominio-2.jpg",
+                "url-imgs.com.br/00151-terrenos-imgs-condominio-3.jpg",
+                "url-imgs.com.br/00151-terrenos-imgs-condominio-4.jpg",
+                "url-imgs.com.br/00151-terrenos-imgs-condominio-5.jpg"
+            ]
+        },
+        {
+            "id": "0073",
+            "tipo": "casas",
+            "logo": "url-imgs.com.br/0073-terrenos-logo.png",
+            "thumb": "url-imgs.com.br/0073-terrenos-thumb.png",
+            "subtitle": "Terreno",
+            "title": "Nome/título do Terreno",
+            "valor": 2475000.0,
+            "areaX": 72,
+            "areaY": 128,
+            "local": "Kobrasol, São José",
+            "lati": -27.596168672163085,
+            "long": -48.60687793857005,
+            "externimg": [
+                "url-imgs.com.br/0073-casa-espaço-externo-1.jpg",
+                "url-imgs.com.br/0073-casa-espaço-externo-2.jpg",
+                "url-imgs.com.br/0073-casa-espaço-externo-3.jpg",
+                "url-imgs.com.br/0073-casa-espaço-externo-4.jpg",
+                "url-imgs.com.br/0073-casa-espaço-externo-5.jpg"
+            ],
+            "internimg": [
+                "url-imgs.com.br/0073-casa-espaço-interno-1.jpg",
+                "url-imgs.com.br/0073-casa-espaço-interno-2.jpg",
+                "url-imgs.com.br/0073-casa-espaço-interno-3.jpg",
+                "url-imgs.com.br/0073-casa-espaço-interno-4.jpg",
+                "url-imgs.com.br/0073-casa-espaço-interno-5.jpg"
+            ]
+        }
+    ],
+    [
+        {
+            "empreendimento": "0015",
+            "detalhes": [
+                "Total de 98 Unidades",
+                "Total de 128 Garagens",
+                "22.036,32 m²"
+            ],
+            "position": 1
+        },
+        {
+            "empreendimento": "0012",
+            "detalhes": [
+                "Total de 98 Unidades",
+                "Total de 128 Garagens",
+                "22.036,32 m²"
+            ],
+            "position": 2
+        },
+        {
+            "empreendimento": "001",
+            "detalhes": [
+                "No coração do Kobrasol",
+                "Sacada com Churrasqueira",
+                "Piscina térmica, Spa"
+            ],
+            "position": 3
+        },
+        {
+            "empreendimento": "007",
+            "detalhes": [
+                "No coração do Kobrasol",
+                "Sacada com Churrasqueira",
+                "Piscina térmica, Spa"
+            ],
+            "position": 4
+        },
+        {
+            "empreendimento": "0091",
+            "detalhes": [
+                "No coração do Kobrasol",
+                "Sacada com Churrasqueira",
+                "Piscina térmica, Spa"
+            ],
+            "position": 5
+        }
+    ]
+]

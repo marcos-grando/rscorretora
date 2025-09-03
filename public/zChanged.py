@@ -1,16 +1,67 @@
 from collections import OrderedDict
 import json
 # •
-diret = r"C:\iDev\Projetos\RS-React-Vers\RSCorretora\public\construtoras.json"
-# diret = r"C:\iDev\Projetos\RS-React-Vers\RSCorretora\public\constSave.json"
+diret = r"C:\iDev\Projetos\RSCorretora\RS-React-Vers\RSCorretora\public\construtoras.json"
+# diret = r"C:\iDev\Projetos\RSCorretora\RS-React-Vers\RSCorretora\public\constSave.json"
 
-# diret = r"C:\iDev\Projetos\RS-React-Vers\RSCorretora\public\teste.json"
+# diret = r"C:\iDev\Projetos\RSCorretora\RS-React-Vers\RSCorretora\public\teste.json"
 
 with open(diret, "r", encoding="utf-8") as file:
     data = json.load(file)
 
+def idInUrl(the_url):
+    return the_url.split("/residenciais/")[1].split("/")[0].lower()
 
-# cloudinary_base = "https://res.cloudinary.com/marcos-grando/image/upload/"
+array_urls = [
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591609/rscorretora/residenciais/julio-schappo/thumb/HTwuVAYzmp_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591503/rscorretora/residenciais/majestic/thumb/tbzuroMvGL_nByiXJXysa_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591673/rscorretora/residenciais/vancouver/thumb/vyzWEQsxNd_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1756919878/rscorretora/residenciais/Premiatto/thumb/cqyjgtkh9mrx750wt9ff.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1756920113/rscorretora/residenciais/Agapito/thumb/bpgtdacscwemw6lzrpto.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591511/rscorretora/residenciais/privilege/thumb/jWKPbgVJTt_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591701/rscorretora/residenciais/solo-blvd/thumb/hRizQHBhCS_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591542/rscorretora/residenciais/don/thumb/MmZaZoQTSa_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591693/rscorretora/residenciais/ville-de-luxembourg/thumb/qTCrlmTYMl_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591653/rscorretora/residenciais/riviere-petrusse/thumb/cCWydHTYuC_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591485/rscorretora/residenciais/belle-ville/thumb/UdwkqpVYwt_EKABgXkcaX_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591533/rscorretora/residenciais/valentina/thumb/xBiCOtHIgO_AqJXDMDycJ_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591589/rscorretora/residenciais/colina-de-sao-pedro/thumb/WGwkCEoQxU_kYxQYzjrjB_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591687/rscorretora/residenciais/villa-vauban/thumb/OyRReQmEiT_ogKNLVvVGU_brAdntnRKu_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591549/rscorretora/residenciais/reserva/thumb/DoWCchyBVs_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591562/rscorretora/residenciais/my-hub/thumb/HYmaLqnvLB_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591569/rscorretora/residenciais/vivarte/thumb/kvMBraRgFS_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591575/rscorretora/residenciais/boulevard-atlantique/thumb/qHBGlTYJkA_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591494/rscorretora/residenciais/lidia-dircksen/thumb/UUDcQKIQlt_lieokmzfWy_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591554/rscorretora/residenciais/voga/thumb/snPLptSUic_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591617/rscorretora/residenciais/lyon/thumb/lytDzJcXDF_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591602/rscorretora/residenciais/boulevard-royal/thumb/SZaxAQnJMC_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591522/rscorretora/residenciais/santos-dumont/thumb/epAPLmrRZw_viDFrOzuQU_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591597/rscorretora/residenciais/sophia/thumb/qGXLwzzclH_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591666/rscorretora/residenciais/tremont/thumb/StsVTdWkOC_thumb.jpg",
+    "https://res.cloudinary.com/marcos-grando/image/upload/v1744591659/rscorretora/residenciais/saint-michel/thumb/wMXWrxFFTv_thumb.jpg"
+]
+
+
+for a, const in enumerate(data):
+    print("---- ", const['const-nome'], " ----")
+
+    for b, resid in enumerate(const['empreendimentos']):
+        alvo = resid['id-nome']
+        result = next((url for url in array_urls if alvo.lower() in url.lower()), None)
+        if result:
+            resid['infos-main']['thumb'] = result
+            print('true')
+        else: print('false')
+        
+
+
+
+with open(diret, "w", encoding="utf-8") as file:
+    json.dump(data, file, indent=4, ensure_ascii=False)
+
+# print("Dados apresentados com sucesso!")
+
+
 
 # def substituir_caminhos(obj):
 #     if isinstance(obj, dict):
@@ -24,13 +75,6 @@ with open(diret, "r", encoding="utf-8") as file:
 #             substituir_caminhos(item)
 
 # substituir_caminhos(data)
-
-
-with open(diret, "w", encoding="utf-8") as file:
-    json.dump(data, file, indent=4, ensure_ascii=False)
-
-print("Caminhos atualizados com sucesso.")
-
 
 
 # for a, const in enumerate(data):
@@ -69,11 +113,11 @@ print("Caminhos atualizados com sucesso.")
 #     for ir, resid in enumerate(const['empreendimentos']):
 #         print(resid['infos-main']['title'])
 
-    # resid['infos-main']["subtitle"] = "Residencial"
-    # resid['infos-main']["title"]    = detalhesLista[ic][ir][0]
-    # resid['infos-main']["local"]    = detalhesLista[ic][ir][1]
-    # resid['infos-main']["status"]   = detalhesLista[ic][ir][2]
-    # resid['infos-main']['valor']    = detalhesLista[ic][ir][3]
+# resid['infos-main']["subtitle"] = "Residencial"
+# resid['infos-main']["title"]    = detalhesLista[ic][ir][0]
+# resid['infos-main']["local"]    = detalhesLista[ic][ir][1]
+# resid['infos-main']["status"]   = detalhesLista[ic][ir][2]
+# resid['infos-main']['valor']    = detalhesLista[ic][ir][3]
 
 
 # ~~~ ALTERANDO INFOS_MAIN ~~~
@@ -280,3 +324,5 @@ print("Caminhos atualizados com sucesso.")
 # for a, const in enumerate(data):
 #     for b, resid in enumerate(const['empreendimentos']):
 #         resid['infos-main'].update(detalhesLista[a][b])
+
+
