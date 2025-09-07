@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import Filters from './Filters';
 
-function FilterMenu({ filters, setFilters, data }) {
+function FilterMenu({ filters, setFilters, datadb }) {
 
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
 
@@ -76,13 +76,13 @@ function FilterMenu({ filters, setFilters, data }) {
 
     return (
         <div ref={filterMobileRef} className={isMobile ? 'filter-mobile' : 'filter-form'}>
-            {!isMobile && <Filters filters={filters} setFilters={setFilters} data={data} />}
+            {!isMobile && <Filters filters={filters} setFilters={setFilters} datadb={datadb} />}
             {isMobile && (
                 <div className="filter-external">
                     <div ref={filterInternalRef} className={`filter-internal`} style={{ ...filterStyle }}>
                         {isOpenFilter ?
                             <div className="filter-modal">
-                                <Filters filters={filters} setFilters={setFilters} data={data} closeFilter={closeFilter} filterRef={filterRef} />
+                                <Filters filters={filters} setFilters={setFilters} datadb={datadb} closeFilter={closeFilter} filterRef={filterRef} />
                             </div>
                             :
                             <div className={`icon ${filterClass}`} onClick={openFilter}>

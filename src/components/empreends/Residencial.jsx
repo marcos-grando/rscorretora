@@ -9,15 +9,46 @@ import ResidContent from "./ResidContent";
 import Slidemove from "../sections/Slidemove";
 import Quadrados from "../Quadrados";
 import LoadingOrPageNotfound from "../reuts/LoadingOrPageNotfound";
+import { supabase } from "../../util/supabaseClient";
 
 function Residencial() {
 
-    // exceção especial para o caso "Premiatto & Agapito" (na existência outros casos, mudar isso)
-    const subType1 = "agapito";
-    const subType2 = "premiatto";
-    const [subType, setSubType] = useState(subType1)
-    const [subResidencial, setSubResidencial] = useState(null)
-    const [isSpecialCase, setIsSpecialCase] = useState(false)
+    const { idParams } = useParams();
+
+    function returnIdParams(urlParams) {
+        if (!urlParams) return null;
+        const id = String(urlParams).match(/^(\d+)-?/);
+        return id ? Number(id[1]) : null;
+    };
+    const itemId = returnIdParams(idParams);
+
+    const [itemdb, setItemdb] = useState(null);
+    const [related, setRelated] = useState([]);
+
+    useEffect(() => {
+        const fetchItemdb = async () => {
+            const { data, error } = await supabase.from('items').select('*, const_logo:construtoras(logo), type_name:types(single), status_name:status(name)').eq('id', itemId).maybeSingle();
+            if (error) console.error(error);
+            setItemdb(data ?? []);
+        };
+        fetchItemdb();
+    }, [idParams]);
+
+    useEffect(() => {
+        const fetchRelateddb = async () => {
+            // const { data, error } = await supabase.from('view_all_items_withypes').select('*').eq('local', itemdb?.local).eq('status_id', itemdb?.status_id).neq('id', itemdb?.id).limit(10);
+            const { data, error } = await supabase.rpc('related_smart', {
+                _local: itemdb.local,
+                _status_id: itemdb.status_id,
+                _exclude_id: itemdb.id,
+                _limit: 10
+            });
+            if (error) console.error(error);
+            setRelated(data ?? []);
+        };
+        fetchRelateddb();
+    }, [itemdb?.id, itemdb?.local, itemdb?.status_id]);
+    // console.log(itemdb)
 
     // define a string usada como classe e 'type' em clickType
     const condType = "cond";
@@ -26,74 +57,7 @@ function Residencial() {
     const allType = [condType, aptoType, planType]
 
     const [contentType, setContentType] = useState(condType);
-    const clickType = (type) => {
-        setContentType(type);
-    };
-    const subResidType = (type) => {
-        setSubType(type);
-    };
-
-    const [residencial, setResidencial] = useState(null);
-    const [construtora, setConstrutora] = useState(null);
-    const [allInfos, setAllInfos] = useState(null);
-
-    const { id } = useParams();
-
-    const generateSlug = (title) => {
-        return title
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .replace(/\s+/g, "-")
-            .replace(/[^a-z0-9-]/g, "")
-            .replace(/-+/g, "-")
-            .trim();
-    };
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch('/construtoras.json');
-            const data = await response.json();
-
-            let findConstrutora = null;
-            let findResidencial = null;
-
-            const findAllInfos = data.map(construtora => ({
-                empreendimentos: construtora.empreendimentos.filter(emp => generateSlug(emp["infos-main"].title + "-" + emp["infos-main"].local) !== id).map(emp => ({
-                    "id-nome": emp["id-nome"],
-                    "infos-main": emp["infos-main"]
-                }))
-            }));
-
-            for (const construtora of data) {
-                console.log("const: ", data);
-                for (const empreendimento of construtora.empreendimentos) {
-
-                    const findSlug = generateSlug(
-                        empreendimento["infos-main"].title + "-" + empreendimento["infos-main"].local
-                    );
-                    if (findSlug === id && !findResidencial) {
-                        findResidencial = empreendimento;
-                        findConstrutora = {
-                            "const-nome": construtora["const-nome"],
-                            "logo": construtora.logo
-                        };
-                    }
-                }
-            }
-
-            setAllInfos(findAllInfos);
-            setConstrutora(findConstrutora || false);
-            setResidencial(findResidencial || false);
-
-            const specialCase = findResidencial && !("infos-cond" in findResidencial);
-            if (specialCase) {
-                setSubResidencial(findResidencial[subType]);
-                setIsSpecialCase(true);
-            }
-        };
-        fetchData();
-    }, [id, subType]);
+    const clickType = (type) => { setContentType(type); };
 
     // Cuida da exibição por dif telas
     const [isMob, setIsMob] = useState(false);
@@ -120,102 +84,87 @@ function Residencial() {
         return () => window.removeEventListener("resize", updateIsMob);
     }, []);
 
-    // if (residencial === false) {
-    //     return <ResidException type={"loading"} />
-    // } else if (residencial === null ) {
-    //     return <ResidException type={"notFound"} />
-    // }
-    if (residencial === null) {
+    if (itemdb === null) {
         return <LoadingOrPageNotfound type={"loading"} />
-    } else if (residencial === false ) {
+    } else if (itemdb === false) {
         return <LoadingOrPageNotfound type={"notFound"} />
     }
 
     return (
-        <>
-            <Header />
-            <ResidWpp title={residencial["infos-main"].title} />
-            <section className="residpage">
-                <Quadrados LorR={'left'} TorB={'top'} UorD={'start'} SorE={'up'} maxSquare={numQuad} />
-                <Quadrados LorR={'right'} TorB={'top'} UorD={'end'} SorE={'up'} maxSquare={numQuad} />
-                <div className="wrapper">
-                    <ResidHead residencial={residencial} construtora={construtora} />
-                    <div className="container">
-                        {isSpecialCase && (
-                            <div className="sub-opts">
-                                <div onClick={() => subResidType(subType1)} className={`opt ${subType1} ${subType === subType1 ? 'active' : ''}`} >
-                                    <p>Agapito</p>
-                                </div>
-                                <div onClick={() => subResidType(subType2)} className={`opt ${subType2} ${subType === subType2 ? 'active' : ''}`} >
-                                    <p>Premiatto</p>
-                                </div>
-                            </div>
-                        )}
+        !itemdb ? (<p>Carregando...</p>) : (
+            <>
+                <Header />
+                <ResidWpp title={itemdb?.name} />
+                <section className="residpage">
+                    <Quadrados LorR={'left'} TorB={'top'} UorD={'start'} SorE={'up'} maxSquare={numQuad} />
+                    <Quadrados LorR={'right'} TorB={'top'} UorD={'end'} SorE={'up'} maxSquare={numQuad} />
+                    <div className="wrapper">
+                        <ResidHead residencial={itemdb} />
+                        <div className="container">
 
-                        <div className="opts">
-                            <div onClick={() => clickType(condType)} className={`opt ${condType} ${contentType === condType ? 'active' : ''}`} >
-                                {isMob &&
-                                    <div>
-                                        <i className="fas fa-image"></i>
-                                        <p>Condomínio</p>
-                                    </div>
-                                }
-                                {!isMob &&
-                                    <>
-                                        <i className="fas fa-image"></i>
-                                        <p>Condomínio</p>
-                                    </>
-                                }
+                            <div className="opts">
+                                <div onClick={() => clickType(condType)} className={`opt ${condType} ${contentType === condType ? 'active' : ''}`} >
+                                    {isMob &&
+                                        <div>
+                                            <i className="fas fa-image"></i>
+                                            <p>Condomínio</p>
+                                        </div>
+                                    }
+                                    {!isMob &&
+                                        <>
+                                            <i className="fas fa-image"></i>
+                                            <p>Condomínio</p>
+                                        </>
+                                    }
+                                </div>
+                                <div onClick={() => clickType(aptoType)} className={`opt ${aptoType} ${contentType === aptoType ? 'active' : ''}`} >
+                                    {isMob &&
+                                        <div>
+                                            <i className="fas fa-couch"></i>
+                                            <p>Apartamento</p>
+                                        </div>
+                                    }
+                                    {!isMob &&
+                                        <>
+                                            <i className="fas fa-couch"></i>
+                                            <p>Apartamento</p>
+                                        </>
+                                    }
+                                </div>
+                                <div onClick={() => clickType(planType)} className={`opt ${planType} ${contentType === planType ? 'active' : ''}`} >
+                                    {isMob &&
+                                        <div>
+                                            <i className="fas fa-clipboard-list"></i>
+                                            <p>Plantas</p>
+                                        </div>
+                                    }
+                                    {!isMob &&
+                                        <>
+                                            <i className="fas fa-clipboard-list"></i>
+                                            <p>Plantas</p>
+                                        </>
+                                    }
+                                </div>
                             </div>
-                            <div onClick={() => clickType(aptoType)} className={`opt ${aptoType} ${contentType === aptoType ? 'active' : ''}`} >
-                                {isMob &&
-                                    <div>
-                                        <i className="fas fa-couch"></i>
-                                        <p>Apartamento</p>
-                                    </div>
-                                }
-                                {!isMob &&
-                                    <>
-                                        <i className="fas fa-couch"></i>
-                                        <p>Apartamento</p>
-                                    </>
-                                }
-                            </div>
-                            <div onClick={() => clickType(planType)} className={`opt ${planType} ${contentType === planType ? 'active' : ''}`} >
-                                {isMob &&
-                                    <div>
-                                        <i className="fas fa-clipboard-list"></i>
-                                        <p>Plantas</p>
-                                    </div>
-                                }
-                                {!isMob &&
-                                    <>
-                                        <i className="fas fa-clipboard-list"></i>
-                                        <p>Plantas</p>
-                                    </>
-                                }
-                            </div>
+                            <ResidContent type={contentType} allType={allType} residencial={itemdb} />
                         </div>
-                        <ResidContent type={contentType} allType={allType}
-                            residencial={isSpecialCase ? subResidencial : residencial}
-                        />
+
                     </div>
 
-                </div>
+                    <ResidMaps title={itemdb?.name} lati={itemdb?.latitude} long={itemdb?.longitude} />
 
-                <ResidMaps title={residencial["infos-main"].title} lati={residencial["infos-main"]["lati"]} long={residencial["infos-main"]["long"]} />
+                    <Slidemove
+                        title="Outros empreendimentos!"
+                        subtitle=""
+                        thumbs={related}
+                    />
 
-                <Slidemove
-                    title="Outros empreendimentos!"
-                    subtitle=""
-                    thumbs={allInfos}
-                />
-
-                <Quadrados LorR={'left'} TorB={'bottom'} UorD={'start'} SorE={'down'} maxSquare={7} />
-                <Quadrados LorR={'right'} TorB={'bottom'} UorD={'end'} SorE={'down'} maxSquare={7} />
-            </section>
-            <Footer />
-        </>
+                    <Quadrados LorR={'left'} TorB={'bottom'} UorD={'start'} SorE={'down'} maxSquare={7} />
+                    <Quadrados LorR={'right'} TorB={'bottom'} UorD={'end'} SorE={'down'} maxSquare={7} />
+                </section>
+                <Footer />
+            </>
+        )
     )
 }
 

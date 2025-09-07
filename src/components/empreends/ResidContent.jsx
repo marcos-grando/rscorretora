@@ -44,15 +44,15 @@ function ResidContent({ type, residencial, allType }) {
     switch (type) {
 
         case allType[0]:
-            resid = residencial["infos-cond"]["imagens-cond"];
+            resid = residencial?.extradb?.condimg;
 
             resid ?
                 render = resid.map((item, i) => (
                     <div key={i} className="img"
                         style={{ animationDelay: `${(i * 2)}0ms` }}
-                        onClick={() => openModal(item.img, i, resid.map(img => img.img))}
+                        onClick={() => openModal(item.url, i, resid.map(img => img.url))}
                     >
-                        <img src={item.img} alt={item.desc} />
+                        <img src={item.url} alt={item.desc} />
                         <p>{item.desc}</p>
                         <p>{item.title}</p>
                     </div>
@@ -67,15 +67,15 @@ function ResidContent({ type, residencial, allType }) {
             break;
 
         case allType[1]:
-            resid = residencial["infos-apto"]["imagens-apto"];
+            resid = residencial?.extradb?.aptoimg;
 
             resid ?
                 render = resid.map((item, i) => (
                     <div key={i} className="img"
                         style={{ animationDelay: `${(i * 2)}0ms` }}
-                        onClick={() => openModal(item.img, i, resid.map(img => img.img))}
+                        onClick={() => openModal(item.url, i, resid.map(img => img.url))}
                     >
-                        <img src={item.img} alt="Imagem do apto" />
+                        <img src={item.url} alt="Imagem do apto" />
                     </div>
                 ))
                 :
@@ -88,15 +88,15 @@ function ResidContent({ type, residencial, allType }) {
             break;
 
         case allType[2]:
-            resid = residencial["infos-plantas"]["imagens-plantas"];
+            resid = residencial?.extradb?.plantimg;
 
             resid ?
                 render = resid.map((item, i) => (
                     <div key={i} className="img"
                         style={{ animationDelay: `${(i * 2)}0ms` }}
-                        onClick={() => openModal(item.img, i, resid.map(img => img.img))}
+                        onClick={() => openModal(item.url, i, resid.map(img => img.url))}
                     >
-                        <img src={item.img} alt={item.desc} />
+                        <img src={item.url} alt={item.desc} />
                         <p>{item.desc}</p>
                         <p>{item.title}</p>
                     </div>
@@ -142,7 +142,7 @@ function ResidContent({ type, residencial, allType }) {
                     <div className="plantas">
                         <p>Plantas disponíveis:</p>
                         <ul>
-                            {residencial["infos-plantas"]["detalhes-plantas"].map((info, i) => (
+                            {residencial?.["extradb"]?.["plantinfo"].map((info, i) => (
                                 <li key={i}>
                                     <i className="fas fa-circle"></i>
                                     {info}
@@ -153,7 +153,7 @@ function ResidContent({ type, residencial, allType }) {
                     <div className="cond">
                         <p>Áreas do condomínio:</p>
                         <ul>
-                            {residencial["infos-cond"]["detalhes-cond"].map((info, i) => (
+                            {residencial?.["extradb"]?.["condinfo"].map((info, i) => (
                                 <li key={i}>
                                     <i className="fas fa-check"></i>
                                     {info}
@@ -164,7 +164,7 @@ function ResidContent({ type, residencial, allType }) {
                     <div className="apto">
                         <p>Detalhes dos aptos:</p>
                         <ul>
-                            {residencial["infos-apto"]["detalhes-apto"].map((info, i) => (
+                            {residencial?.["extradb"]?.["aptoinfo"].map((info, i) => (
                                 <li key={i}>
                                     <i className="fas fa-check"></i>
                                     {info}

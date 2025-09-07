@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function ResidHead({ residencial, construtora }) {
+function ResidHead({ residencial }) {
 
     const [isMob, setIsMob] = useState(false);
 
@@ -21,78 +21,82 @@ function ResidHead({ residencial, construtora }) {
         return () => window.removeEventListener("resize", updateIsMob);
     }, []);
 
-    const resid = residencial['infos-main'];
+    const const_logo = residencial?.const_logo?.logo?.url;
 
-    let status = resid.status === 'Pré-lançamento' ? 'Pré lançamento' : resid.status || 'N/A';
-    let valor = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(resid.valor) || null;
+    const details = residencial?.extradb?.details;
+    const dormsMinMax = `${details?.dorms?.min}~${details?.dorms?.max}`;
+    const banheirosMinMax = `${details?.banheiros?.min}~${details?.banheiros?.max}`;
+    const garagensMinMax = `${details?.garagens?.min}~${details?.garagens?.max}`;
+
+    const valor = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(residencial.valor) || null;
 
     return (
-        <div className="head">
-            <div className="img">
-                <img src={resid.thumb} alt={`Thumbnail do Residencial ${resid.title}`} className="thumb" />
-                <img src={resid.logo} alt={`Logotipo do Residencial ${resid.title}`} className="logo" />
-            </div>
-            <div className="texto">
-                <p className="status">{status}</p>
-                <p className="title">{resid.subtitle} {resid.title}</p>
-                <p className="local">{resid.local}</p>
-                <p className="valor">Imóveis a partir de <span>{valor}</span></p>
-                <img className="constlogo" src={construtora.logo} alt="" />
-                <div className="infos">
-                    <div className="info">
-                        {isMob ?
-                            <>
-                                <div>
+        !residencial ? (<p>Carregando...</p>) : (
+            <div className="head">
+                <div className="img">
+                    <img src={residencial?.thumb?.url} alt={`Thumbnail do Residencial ${residencial.title}`} className="thumb" />
+                    <img src={residencial?.logo?.url} alt={`Logotipo do Residencial ${residencial.title}`} className="logo" />
+                </div>
+                <div className="texto">
+                    <p className="status">{residencial.status_name.name}</p>
+                    <p className="title">{residencial.type_name.single} {residencial.name}</p>
+                    <p className="local">{residencial.local}</p>
+                    <p className="valor">Imóveis a partir de <span>{valor}</span></p>
+                    {const_logo && <img className="constlogo" src={const_logo} alt="" />}
+                    <div className="infos">
+                        <div className="info">
+                            {isMob ?
+                                <>
+                                    <div>
+                                        <i className="fas fa-bed"></i>
+                                        <p>{dormsMinMax}</p>
+                                        <p>Dorms</p>
+                                    </div>
+
+                                </>
+                                :
+                                <>
                                     <i className="fas fa-bed"></i>
-                                    <p>1~3</p>
-                                    <p>Dorms</p>
-                                </div>
-                                
-                            </>
-                            :
-                            <>
-                                <i className="fas fa-bed"></i>
-                                <p>1~3 Dorms</p>
-                            </>
-                        }
-                    </div>
-                    <div className="info">
-                        {isMob ?
-                            <>
-                                <div>
+                                    <p>{dormsMinMax} Dorms</p>
+                                </>
+                            }
+                        </div>
+                        <div className="info">
+                            {isMob ?
+                                <>
+                                    <div>
+                                        <i className="fas fa-shower"></i>
+                                        <p>{banheirosMinMax}</p>
+                                        <p>Banheiros</p>
+                                    </div>
+                                </>
+                                :
+                                <>
                                     <i className="fas fa-shower"></i>
-                                    <p>1~3</p>
-                                    <p>Banheiros</p>
-                                </div>
-                                
-                            </>
-                            :
-                            <>
-                                <i className="fas fa-shower"></i>
-                                <p>1~3 Banheiros</p>
-                            </>
-                        }
-                    </div>
-                    <div className="info">
-                        {isMob ?
-                            <>
-                                <div>
+                                    <p>{banheirosMinMax} Banheiros</p>
+                                </>
+                            }
+                        </div>
+                        <div className="info">
+                            {isMob ?
+                                <>
+                                    <div>
+                                        <i className="fas fa-car"></i>
+                                        <p>{garagensMinMax}</p>
+                                        <p>Garagem</p>
+                                    </div>
+                                </>
+                                :
+                                <>
                                     <i className="fas fa-car"></i>
-                                    <p>1~3</p>
-                                    <p>Garagem</p>
-                                </div>
-                                
-                            </>
-                            :
-                            <>
-                                <i className="fas fa-car"></i>
-                                <p>1~3 Garagem</p>
-                            </>
-                        }
+                                    <p>{garagensMinMax} Garagem</p>
+                                </>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        )
     )
 }
 

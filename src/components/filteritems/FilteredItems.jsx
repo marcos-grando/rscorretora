@@ -1,32 +1,28 @@
 import React, { useMemo, lazy, Suspense, useState, useEffect } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
 const ThumbEach = lazy(() => import('../sections/ThumbEach'));
 
-function FilteredItems({ filters, data }) {
+function FilteredItems({ filters, datadb }) {
 
     const [gridStyle, setGridStyle] = useState({ gridTemplateColumns: "repeat(4, 1fr)", gridTemplateRows: "repeat(auto, 1fr)" });
     const [itemTotal, setItemsTotal] = useState(16);
     const [currentPage, setCurrentPage] = useState(0);
 
-    const filteredData = useMemo(() => {
-        const result = data.flatMap(construtora =>
-            construtora.empreendimentos.filter(empreendimento => {
-                const { local, status } = empreendimento['infos-main'];
-                return (
-                    (filters.local.length === 0 || filters.local.includes(local)) &&
-                    (filters.status.length === 0 || filters.status.includes(status))
-                );
-            })
-        );
+    const filteredDatadb = useMemo(() => {
+        const result = datadb.filter(eachItem => {
+            const { local, status } = eachItem;
+            return (
+                (filters.local.length === 0 || filters.local.includes(local)) &&
+                (filters.status.length === 0 || filters.status.includes(status))
+            );
+        });
         setCurrentPage(0);
         return result;
-    }, [data, filters]);
+    }, [datadb, filters]);
 
-    const isNull = filteredData.length === 0;
+    const isNull = filteredDatadb.length === 0;
 
     useEffect(() => {
         const updateItemsPerRow = () => {
@@ -60,8 +56,8 @@ function FilteredItems({ filters, data }) {
     }, []);
 
     const itemsGroup = itemTotal;
-    const totalGroups = Math.ceil(filteredData.length / itemsGroup);
-    const currentItems = filteredData.slice(currentPage * itemsGroup, currentPage * itemsGroup + itemsGroup);
+    const totalGroups = Math.ceil(filteredDatadb.length / itemsGroup);
+    const currentItems = filteredDatadb.slice(currentPage * itemsGroup, currentPage * itemsGroup + itemsGroup);
 
     return (
         <Suspense fallback={<div>Carregando...</div>}>
@@ -76,11 +72,11 @@ function FilteredItems({ filters, data }) {
                     </div>
                 }
                 <>
-                    {!isNull && <p className='total-cards'>{filteredData.length} empreendimento(s) encontrado(s)</p>}
+                    {!isNull && <p className='total-cards'>{filteredDatadb.length} empreendimento(s) encontrado(s)</p>}
                     <div className="slide-items" style={{ display: 'grid', gap: '1em', ...gridStyle }}>
-                        {currentItems.map((empreendimento, i) => (
+                        {currentItems.map((eachItem, i) => (
                             <div key={i} className="slide-item" style={{ animationDelay: `${i * 50}ms` }}>
-                                <ThumbEach empreendimento={empreendimento} />
+                                <ThumbEach eachItem={eachItem} />
                             </div>
                         ))}
                     </div>

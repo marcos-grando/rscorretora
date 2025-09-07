@@ -28,7 +28,7 @@ function Linkto({ type, data, text }) {
         case "instagram":
             return "https://www.instagram.com/raquelrcorretora";
 
-        
+
         // links menu
 
         case "menuSobre":
@@ -37,8 +37,8 @@ function Linkto({ type, data, text }) {
         case "menuEmpreendimentos":
             return "/empreendimentos";
         case "empreend-slug":
-            const resid = data['infos-main'];
-            return `/empreendimentos/${generateSlug(resid.title + "-" + resid.local)}`;
+            const resid = data;
+            return `/empreendimentos/${generateSlug(resid.id + "-" + resid.name + "-" + resid.local)}`;
 
         case "menuBlog":
             return "/blog-space";

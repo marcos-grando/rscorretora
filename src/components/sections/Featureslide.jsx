@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/effect-flip";
 import "swiper/css/pagination";
 
+// componente inutilizado por ora
 function Featureslide({ features, title, subtitle }) {
 
     const [featuresVisible, setFeaturesVisible] = useState(false);
@@ -15,19 +16,18 @@ function Featureslide({ features, title, subtitle }) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    if (entry.target === featuresRef.current) {setFeaturesVisible(true)}
+                    if (entry.target === featuresRef.current) { setFeaturesVisible(true) }
                 }
             })
         }, { rootMargin: "20px", threshold: 0.9, });
 
-        if (featuresRef.current) {observer.observe(featuresRef.current)}
+        if (featuresRef.current) { observer.observe(featuresRef.current) }
         return () => {
-            if (featuresRef.current) {observer.unobserve(featuresRef.current)}
+            if (featuresRef.current) { observer.unobserve(featuresRef.current) }
         }
+    }, []);
 
-    }, [])
-
-    return(
+    return (
         <section className="features-wrapper">
             {<Suspense fallback={<div>Carregando...</div>}>
                 <div className="slide-container" ref={featuresRef}>
@@ -48,7 +48,7 @@ function Featureslide({ features, title, subtitle }) {
                         {features.map((construtora) =>
                             construtora.empreendimentos.map((empreendimento) => (
                                 <SwiperSlide key={empreendimento['id-nome']} className="slide-item">
-                                    <img src={empreendimento['infos-main']['fachada']} alt={`${empreendimento['infos-main']['title']}, lançamento em destaque.`} loading="lazy"/>
+                                    <img src={empreendimento['infos-main']['fachada']} alt={`${empreendimento['infos-main']['title']}, lançamento em destaque.`} loading="lazy" />
                                 </SwiperSlide>
                             ))
                         )}

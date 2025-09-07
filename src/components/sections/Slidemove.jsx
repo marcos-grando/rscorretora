@@ -11,7 +11,7 @@ function Slidemove({ thumbs, title, subtitle }) {
 
     const [itemsSlide, setItemsSlide] = useState(4);
     const [distanceItem, setDistanceItem] = useState(40);
-    const [itemPadding, setItemPadding] =  useState(null);
+    const [itemPadding, setItemPadding] = useState(null);
 
     const [swiperVisible, setSwiperVisible] = useState(false);
     const swiperContainerRef = useRef(null);
@@ -45,7 +45,7 @@ function Slidemove({ thumbs, title, subtitle }) {
     useEffect(() => {
         const updateItemsPerRow = () => {
             const width = window.innerWidth;
-            
+
             if (width <= 515) {
                 setItemsSlide(1);
                 setDistanceItem(10);
@@ -96,17 +96,15 @@ function Slidemove({ thumbs, title, subtitle }) {
                             swiperRef.current = swiper;
                         }}
                     >
-                        {thumbs.map((construtora) =>
-                            construtora.empreendimentos.map((empreendimento) => (
-                                <SwiperSlide className="slide-item"
-                                    title={`Ver mais sobre o residencial ${empreendimento['infos-main']['title']}`}
-                                    key={empreendimento.index}
-                                    data-index={empreendimento.index}
-                                >
-                                    <ThumbEach empreendimento={empreendimento} />
-                                </SwiperSlide>
-                            ))
-                        )}
+                        {thumbs.map((eachItem, i) => (
+                            <SwiperSlide className="slide-item"
+                                title={`Ver mais sobre o residencial ${eachItem.name}`}
+                                key={i}
+                                data-index={i}
+                            >
+                                <ThumbEach eachItem={eachItem} />
+                            </SwiperSlide>
+                        ))}
                     </Swiper>}
                 </div>
             </Suspense>}

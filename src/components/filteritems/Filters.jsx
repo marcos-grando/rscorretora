@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 
-function Filters({ filters, setFilters, data, closeFilter, filterRef }) {
-    const locaisUnicos = useMemo(() => [...new Set(data.flatMap(item => item.empreendimentos.map(emp => emp['infos-main'].local)))], [data]);
-    const statusUnicos = useMemo(() => [...new Set(data.flatMap(item => item.empreendimentos.map(emp => emp['infos-main'].status)))], [data]);
+function Filters({ filters, setFilters, datadb, closeFilter, filterRef }) {
+    const locaisUnicos = useMemo(() => [...new Set(datadb.map(emp => emp?.local))], [datadb]);
+    const statusUnicos = useMemo(() => [...new Set(datadb.map(emp => emp?.status))], [datadb]);
 
     const choiceFilter = (category, value) => {
         setFilters(prevFilters => ({

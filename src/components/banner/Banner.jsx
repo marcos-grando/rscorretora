@@ -1,21 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Linkto from "../reuts/Linkto";
 import Arrows from "./Arrows";
 import Quadrados from "../Quadrados";
+import { supabase } from "../../util/supabaseClient";
 
-function Banner({ infos }) {
+function Banner() {
 
-    // itera sobre 'infos' e retorna a div .slide com o conteúdo do Banner formatado (R$, etc);
-    const divInfosMap = infos.flatMap((construtora) => construtora.empreendimentos.map((info) => {
-        let status = info['infos-main']?.status === 'Pré-lançamento' ? 'Pré lançamento' : info['infos-main']?.status || 'N/A';
-        let valor = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(info['infos-main']?.valor) || null;
+    const [slidedb, setSlidedb] = useState([]);
+    useEffect(() => {
+        const fetchDatadb = async () => {
+            const { data, error } = await supabase.from('view_slide').select('*');
+            if (error) console.error(error);
+            setSlidedb(data);
+        };
+        fetchDatadb();
+    }, []);
+
+    const divInfosMap = slidedb.map((info, i) => {
+        let valor = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(info?.item_valor) || null;
 
         return (
-            <div key={info['id-nome'] || 'N/A'} className={`slide`} id={info['id-nome'] || 'N/A'}>
+            <div key={i || 'N/A'} className={`slide`} id={`${i}-${info.item_name}` || 'N/A'}>
                 <div className="img">
                     <div className="img-skew">
-                        <img src={info['infos-main']['banner']} alt="" />
+                        <img src={info.banner} alt="" />
                     </div>
                     <div className="img-skew-shadow">
 
@@ -23,10 +32,10 @@ function Banner({ infos }) {
                 </div>
                 <div className="content">
                     <div className="status">{status}</div>
-                    <div className="title" title={`Residencial ${info['infos-main']?.title}`}>{info['infos-main']?.title}</div>
-                    <div className="local">{info['infos-main']?.local}</div>
+                    <div className="title" title={`Residencial ${info?.item_name}`}>{info?.item_name}</div>
+                    <div className="local">{info?.item_local}</div>
                     <ul className="detalhes">
-                        {info['infos-main']?.detalhes?.map((detalhe, i) => (
+                        {info?.detalhes?.map((detalhe, i) => (
                             <li key={i} className="detalhe">{detalhe}</li>
                         ))}
                     </ul>
@@ -41,15 +50,14 @@ function Banner({ infos }) {
                 </div>
             </div>
         )
-    }));
+    });
 
     // itera sobre 'infos' para criar as bolinhas abaixo de banner
     // ballIndex serve também índice para a key
     let ballIndex = 0;
-    const divBallsMap = infos.flatMap((construtora) => construtora.empreendimentos.map((info) => (
-        <div key={ballIndex} className={`ball`} id={ballIndex++}>
-        </div>
-    )));
+    const divBallsMap = slidedb.map((_) => (
+        <div key={ballIndex} className={`ball`} id={ballIndex++} />
+    ));
 
     return (
         <>

@@ -5,18 +5,19 @@ import Footer from "../Footer";
 import Blog from "./Blog";
 import Quadrados from "../Quadrados";
 
+const generateSlug = (title) => {
+    return title
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9-]/g, "")
+        .replace(/-+/g, "-")
+        .trim();
+};
+
 function Newspage() {
 
-    const generateSlug = (title) => {
-        return title
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .replace(/\s+/g, "-")
-            .replace(/[^a-z0-9-]/g, "")
-            .replace(/-+/g, "-")
-            .trim();
-    };
     const { id } = useParams();
     const [news, setNews] = useState([]);
 
@@ -28,7 +29,7 @@ function Newspage() {
             setNews(selectNews || null);
         }
         fetchNews();
-    }, []);
+    }, [id]);
 
     if (!news) return <Blog type={"notFound"} />
 

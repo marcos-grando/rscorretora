@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../Header";
 import Footer from "../Footer";
 import Item from "./Item";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import BlogSpace from "./BlogSpace";
 
 function Blog({ type, noImg, nNow }) {
