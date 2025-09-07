@@ -20,7 +20,7 @@ function Allitems({ notOnlyPage = false, datadbNotOnly = [] }) {
         } else {
             setDatadb(datadbNotOnly);
         }
-    }, [notOnlyPage, datadbNotOnly]);
+    }, [notOnlyPage]);
 
     const [filters, setFilters] = useState({ local: [], status: [] });
     const [filterVisible, setFilterVisible] = useState(false);

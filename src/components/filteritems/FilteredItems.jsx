@@ -1,4 +1,4 @@
-import React, { useMemo, lazy, Suspense, useState, useEffect } from 'react';
+import React, { useMemo, lazy, Suspense, useState, useEffect, useRef } from 'react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -8,6 +8,8 @@ function FilteredItems({ filters, datadb }) {
 
     const [gridStyle, setGridStyle] = useState({ gridTemplateColumns: "repeat(4, 1fr)", gridTemplateRows: "repeat(auto, 1fr)" });
     const [itemTotal, setItemsTotal] = useState(16);
+
+    const containerRef = useRef(null);
     const [currentPage, setCurrentPage] = useState(0);
 
     const filteredDatadb = useMemo(() => {
@@ -18,8 +20,11 @@ function FilteredItems({ filters, datadb }) {
                 (filters.status.length === 0 || filters.status.includes(status))
             );
         });
-        setCurrentPage(0);
         return result;
+    }, [datadb, filters]);
+
+    useEffect(() => {
+        setCurrentPage(0);
     }, [datadb, filters]);
 
     const isNull = filteredDatadb.length === 0;
@@ -55,13 +60,20 @@ function FilteredItems({ filters, datadb }) {
         return () => window.removeEventListener("resize", updateItemsPerRow);
     }, []);
 
+    useEffect(() => {
+        if (!containerRef.current) return;
+        const OFFSET = 72; // ajuste se tiver navbar fixa
+        const y = containerRef.current.getBoundingClientRect().top + window.scrollY - OFFSET;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+    }, [currentPage]);
+
     const itemsGroup = itemTotal;
     const totalGroups = Math.ceil(filteredDatadb.length / itemsGroup);
     const currentItems = filteredDatadb.slice(currentPage * itemsGroup, currentPage * itemsGroup + itemsGroup);
 
     return (
         <Suspense fallback={<div>Carregando...</div>}>
-            <div className="filter-infos">
+            <div ref={containerRef} className="filter-infos">
                 {isNull &&
                     <div className='noResult'>
                         <div className="building">
