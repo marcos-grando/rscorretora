@@ -76,6 +76,8 @@ function ResidContent({ type, residencial, allType }) {
                         onClick={() => openModal(item.url, i, resid.map(img => img.url))}
                     >
                         <img src={item.url} alt="Imagem do apto" />
+                        <p>{item.desc}</p>
+                        <p>{item.title}</p>
                     </div>
                 ))
                 :
