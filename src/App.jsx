@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Banner from "./components/banner/Banner";
 import TopAndRedirect from "./components/TopAndRedirect";
-import LoadingOrPageNotfound from "./components/reuts/LoadingOrPageNotfound";
+import LoadingOrPageNotfound from "./util/LoadingOrPageNotfound";
 
 const Sobre = lazy(() => import('./components/sobre/Sobre'));
 const SobreOnlypage = lazy(() => import('./components/sobre/SobreOnlypage'));

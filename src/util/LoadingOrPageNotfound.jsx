@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Linkto from "./Linkto";
-import Header from "../Header";
+import Linkto from "../components/reuts/Linkto";
+import Header from "../components/Header";
+import LoadingScreen from "./LoadingScreen";
 
-function LoadingOrPageNotfound({ type }) {
+function LoadingOrPageNotfound({ type, error }) {
 
     switch (type) {
         case "notFound":
@@ -51,7 +52,7 @@ function LoadingOrPageNotfound({ type }) {
                             position: "absolute", top: "0"
                         }}
                     >
-                        <p className="notFound-title" style={{ fontSize: "1.5em", fontWeight: "600", opacity: "0.7" }}>Carregando informações...</p>
+                        <LoadingScreen />
                     </section>
                 </>
             );

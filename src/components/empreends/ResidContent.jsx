@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 function ResidContent({ type, residencial, allType }) {
 
-    const [isModalOpen, setIsModalOpen] = useState(false);      // abre/fecha a imagem
+    const [isModalOpen, setIsModalOpen] = useState(false);  // abre/fecha a imagem
     const [selectImage, setSelectImage] = useState(null);   // armazena a imagem clicada
     const [imageList, setImageList] = useState([]);         // lista de todas as imagens do 'tipo'
     const [selectIndex, setSelectIndex] = useState(0);      // índice que será usada para navegação
@@ -46,7 +46,7 @@ function ResidContent({ type, residencial, allType }) {
         case allType[0]:
             resid = residencial?.extradb?.condimg;
 
-            resid ?
+            (resid && resid.length > 0) ?
                 render = resid.map((item, i) => (
                     <div key={i} className="img"
                         style={{ animationDelay: `${(i * 2)}0ms` }}
@@ -69,7 +69,7 @@ function ResidContent({ type, residencial, allType }) {
         case allType[1]:
             resid = residencial?.extradb?.aptoimg;
 
-            resid ?
+            (resid && resid.length > 0) ?
                 render = resid.map((item, i) => (
                     <div key={i} className="img"
                         style={{ animationDelay: `${(i * 2)}0ms` }}
@@ -90,7 +90,7 @@ function ResidContent({ type, residencial, allType }) {
         case allType[2]:
             resid = residencial?.extradb?.plantimg;
 
-            resid ?
+            (resid && resid.length > 0) ?
                 render = resid.map((item, i) => (
                     <div key={i} className="img"
                         style={{ animationDelay: `${(i * 2)}0ms` }}

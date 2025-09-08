@@ -8,12 +8,13 @@ import ResidMaps from "./ResidMaps";
 import ResidContent from "./ResidContent";
 import Slidemove from "../sections/Slidemove";
 import Quadrados from "../Quadrados";
-import LoadingOrPageNotfound from "../reuts/LoadingOrPageNotfound";
+import LoadingOrPageNotfound from "../../util/LoadingOrPageNotfound";
 import { supabase } from "../../util/supabaseClient";
 
 function Residencial() {
 
     const { idParams } = useParams();
+    const [loading, setLoading] = useState(true);
 
     function returnIdParams(urlParams) {
         if (!urlParams) return null;
@@ -25,36 +26,44 @@ function Residencial() {
     const [itemdb, setItemdb] = useState(null);
     const [related, setRelated] = useState([]);
 
+    // fetch para retornar os dados do residencial clicado/consultado
     useEffect(() => {
         const fetchItemdb = async () => {
             const { data, error } = await supabase.from('items').select('*, const_logo:construtoras(logo), type_name:types(single), status_name:status(name)').eq('id', itemId).maybeSingle();
             if (error) console.error(error);
+
             setItemdb(data ?? []);
+            setLoading(false);
         };
         fetchItemdb();
     }, [idParams]);
 
+    // fetch para slide "relacionados";
     useEffect(() => {
         const fetchRelateddb = async () => {
-            // const { data, error } = await supabase.from('view_all_items_withypes').select('*').eq('local', itemdb?.local).eq('status_id', itemdb?.status_id).neq('id', itemdb?.id).limit(10);
             const { data, error } = await supabase.rpc('related_smart', {
-                _local: itemdb.local,
-                _status_id: itemdb.status_id,
-                _exclude_id: itemdb.id,
+                _local: itemdb?.local,
+                _status_id: itemdb?.status_id,
+                _exclude_id: itemdb?.id,
                 _limit: 10
             });
             if (error) console.error(error);
             setRelated(data ?? []);
         };
-        fetchRelateddb();
+        if (itemdb) fetchRelateddb();
     }, [itemdb?.id, itemdb?.local, itemdb?.status_id]);
-    // console.log(itemdb)
+
+    useEffect(() => {
+        setTimeout(() => {
+            console.log(`${itemdb?.name}: `, itemdb);
+        }, 1250);
+    }, [idParams, itemdb])
 
     // define a string usada como classe e 'type' em clickType
     const condType = "cond";
     const aptoType = "apto";
     const planType = "plantas";
-    const allType = [condType, aptoType, planType]
+    const allType = [condType, aptoType, planType];
 
     const [contentType, setContentType] = useState(condType);
     const clickType = (type) => { setContentType(type); };
@@ -84,11 +93,11 @@ function Residencial() {
         return () => window.removeEventListener("resize", updateIsMob);
     }, []);
 
-    if (itemdb === null) {
+    if (loading) {
         return <LoadingOrPageNotfound type={"loading"} />
-    } else if (itemdb === false) {
+    } else if (!loading && !itemdb) {
         return <LoadingOrPageNotfound type={"notFound"} />
-    }
+    };
 
     return (
         !itemdb ? (<p>Carregando...</p>) : (
@@ -153,11 +162,13 @@ function Residencial() {
 
                     <ResidMaps title={itemdb?.name} lati={itemdb?.latitude} long={itemdb?.longitude} />
 
-                    <Slidemove
-                        title="Outros empreendimentos!"
-                        subtitle=""
-                        thumbs={related}
-                    />
+                    {related && related.length > 0 &&
+                        <Slidemove
+                            title="Outros empreendimentos!"
+                            subtitle=""
+                            thumbs={related}
+                        />
+                    }
 
                     <Quadrados LorR={'left'} TorB={'bottom'} UorD={'start'} SorE={'down'} maxSquare={7} />
                     <Quadrados LorR={'right'} TorB={'bottom'} UorD={'end'} SorE={'down'} maxSquare={7} />

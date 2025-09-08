@@ -123,6 +123,7 @@
 .residpage .wrapper .head .texto {
     /* border: 1px solid red; */
     height: auto; width: max-content;
+    min-width: 350px;
     padding: var(--residpage-padd-headtexto);
 
     display: flex;
