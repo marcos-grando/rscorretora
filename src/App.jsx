@@ -21,7 +21,6 @@ function App() {
 
     // novo Supabase View Data
     const [datadb, setDatadb] = useState([]);
-    const [infosRS, setInfosRS] = useState(null);
 
     const [loading, setLoading] = useState(!localStorage.getItem("alreadyLoaded"));
 
@@ -44,22 +43,23 @@ function App() {
         return () => window.removeEventListener("resize", updateFilterDesktop);
     }, []);
 
-    useEffect(() => {
-        if (loading) {
-            const timer = setTimeout(() => {
-                setLoading(false);
-                localStorage.setItem("alreadyLoaded", "true");
-            }, 2000);
+    // useEffect(() => {
+    //     if (loading) {
+    //         const timer = setTimeout(() => {
+    //             setLoading(false);
+    //             localStorage.setItem("alreadyLoaded", "true");
+    //         }, 2000);
 
-            return () => clearTimeout(timer);
-        }
-    }, [loading]);
+    //         return () => clearTimeout(timer);
+    //     }
+    // }, [loading]);
 
     useEffect(() => {
         const fetchDatadb = async () => {
             const { data, error } = await supabase.from('view_all_items_withypes').select('*');
             if (error) console.error(error);
             setDatadb(data);
+            setLoading(false);
         };
         fetchDatadb();
     }, []);
@@ -97,7 +97,7 @@ function App() {
                                 />
                             </Suspense>
 
-                            {isFilterOrNot &&
+                            {isFilterOrNot && !loading &&
                                 <Suspense fallback={<div>Carregando...</div>}>
                                     <Allitems notOnlyPage={true} datadbNotOnly={datadb} />
                                 </Suspense>

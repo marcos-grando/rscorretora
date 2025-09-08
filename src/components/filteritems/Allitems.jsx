@@ -7,29 +7,12 @@ import { supabase } from '../../util/supabaseClient';
 
 function Allitems({ notOnlyPage = false, datadbNotOnly = [] }) {
 
-    const [datadb, setDatadb] = useState(datadbNotOnly);
-
-    useEffect(() => {
-        if (!notOnlyPage) {
-            const fetchDatadb = async () => {
-                const { data, error } = await supabase.from('view_all_items_withypes').select('*');
-                if (error) console.error(error);
-                setDatadb(data);
-            };
-            fetchDatadb();
-        } else {
-            setDatadb(datadbNotOnly);
-        }
-    }, [notOnlyPage]);
-
-    const [filters, setFilters] = useState({ local: [], status: [] });
-    const [filterVisible, setFilterVisible] = useState(false);
     const filterRef = useRef(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(([entry]) => {
             if (entry.isIntersecting) setFilterVisible(true);
-        }, { rootMargin: "5px", threshold: 0.05 });
+        }, { rootMargin: "5px", threshold: 0.25 });
 
         if (filterRef.current) observer.observe(filterRef.current);
 
@@ -38,28 +21,44 @@ function Allitems({ notOnlyPage = false, datadbNotOnly = [] }) {
         };
     }, []);
 
+    const [datadbState, setDatadbState] = useState([]);
+    const [loadingState, setLoadingState] = useState(true);
+
+    useEffect(() => {
+        if (!notOnlyPage) {
+            const fetchDatadb = async () => {
+                const { data, error } = await supabase.from('view_all_items_withypes').select('*');
+                if (error) console.error(error);
+                setDatadbState(data || []);
+                setLoadingState(false);
+            };
+            fetchDatadb();
+        }
+    }, [notOnlyPage]);
+
+    const datadb = notOnlyPage ? datadbNotOnly : datadbState;
+
+    const [filters, setFilters] = useState({ local: [], status: [] });
+    const [filterVisible, setFilterVisible] = useState(false);
+
     return (
-        !datadb ? (<p>Carregando...</p>) : (
-            <>
-                {!notOnlyPage && <Header />}
-                <section className="filter" ref={filterRef}>
-                    <div className="wrapper">
-                        <div className={!notOnlyPage ? "onlypage-title" : "filter-title"}>
-                            <p>Empreendimentos</p>
-                            <p>Filtrar e buscar imóveis por preferência</p>
-                            <div className="line"></div>
-                        </div>
-
-
-                        <div className="container">
-                            <FilterMenu filterRef={filterRef} filters={filters} setFilters={setFilters} datadb={datadb} />
-                            {filterVisible && <FilteredItems filters={filters} datadb={datadb} />}
-                        </div>
+        <>
+            {!notOnlyPage && <Header />}
+            <section className="filter" ref={filterRef}>
+                <div className="wrapper">
+                    <div className={!notOnlyPage ? "onlypage-title" : "filter-title"}>
+                        <p>Empreendimentos</p>
+                        <p>Filtrar e buscar imóveis por preferência</p>
+                        <div className="line"></div>
                     </div>
-                </section>
-                {!notOnlyPage && <Footer />}
-            </>
-        )
+                    <div className="container">
+                        <FilterMenu filterRef={filterRef} filters={filters} setFilters={setFilters} datadb={datadb} />
+                        {filterVisible && <FilteredItems filters={filters} datadb={datadb} />}
+                    </div>
+                </div>
+            </section>
+            {!notOnlyPage && <Footer />}
+        </>
     );
 };
 
