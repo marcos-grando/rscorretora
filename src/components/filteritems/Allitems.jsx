@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
 import FilterMenu from './FilterMenu';
 import FilteredItems from './FilteredItems';
-import { supabase } from '../../util/supabaseClient';
+import { getAllItems } from '../../data/catalog';
 
 function Allitems({ notOnlyPage = false, datadbNotOnly = [] }) {
 
@@ -21,22 +21,7 @@ function Allitems({ notOnlyPage = false, datadbNotOnly = [] }) {
         };
     }, []);
 
-    const [datadbState, setDatadbState] = useState([]);
-    const [loadingState, setLoadingState] = useState(true);
-
-    useEffect(() => {
-        if (!notOnlyPage) {
-            const fetchDatadb = async () => {
-                const { data, error } = await supabase.from('view_all_items_withypes').select('*');
-                if (error) console.error(error);
-                setDatadbState(data || []);
-                setLoadingState(false);
-            };
-            fetchDatadb();
-        }
-    }, [notOnlyPage]);
-
-    const datadb = notOnlyPage ? datadbNotOnly : datadbState;
+    const datadb = notOnlyPage ? datadbNotOnly : getAllItems();
 
     const [filters, setFilters] = useState({ local: [], status: [] });
     const [filterVisible, setFilterVisible] = useState(false);

@@ -1,7 +1,6 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { supabase } from "./util/supabaseClient";
-import LoadingPage from "./components/LoadingPage";
+import { getAllItems } from "./data/catalog";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Banner from "./components/banner/Banner";
@@ -19,10 +18,7 @@ const Residencial = lazy(() => import('./components/empreends/Residencial'));
 
 function App() {
 
-    // novo Supabase View Data
-    const [datadb, setDatadb] = useState([]);
-
-    const [loading, setLoading] = useState(!localStorage.getItem("alreadyLoaded"));
+    const datadb = getAllItems();
 
     const [isFilterOrNot, setIsFilterOrNot] = useState(true);
 
@@ -43,27 +39,6 @@ function App() {
         return () => window.removeEventListener("resize", updateFilterDesktop);
     }, []);
 
-    // useEffect(() => {
-    //     if (loading) {
-    //         const timer = setTimeout(() => {
-    //             setLoading(false);
-    //             localStorage.setItem("alreadyLoaded", "true");
-    //         }, 2000);
-
-    //         return () => clearTimeout(timer);
-    //     }
-    // }, [loading]);
-
-    useEffect(() => {
-        const fetchDatadb = async () => {
-            const { data, error } = await supabase.from('view_all_items_withypes').select('*');
-            if (error) console.error(error);
-            setDatadb(data);
-            setLoading(false);
-        };
-        fetchDatadb();
-    }, []);
-
     const filterDatadb = (keyCompare, valueCompare, except = false) => {
         if (except) return datadb.filter((each) => each?.[keyCompare] !== valueCompare)
         return datadb.filter((each) => each?.[keyCompare] === valueCompare)
@@ -77,7 +52,6 @@ function App() {
                     path="/"
                     element={
                         <>
-                            {loading && <LoadingPage />}
                             <Header />
                             <Banner />
 
@@ -97,7 +71,7 @@ function App() {
                                 />
                             </Suspense>
 
-                            {isFilterOrNot && !loading &&
+                            {isFilterOrNot &&
                                 <Suspense fallback={<div>Carregando...</div>}>
                                     <Allitems notOnlyPage={true} datadbNotOnly={datadb} />
                                 </Suspense>
@@ -162,7 +136,3 @@ function App() {
 }
 
 export default App;
-
-/*
-    data={infos} => Apenas criar uma requisição .json em Residencial.jsx de acordo com o slug/id para trazer o conteúdo.
-*/

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../Header";
 import Footer from "../Footer";
@@ -9,12 +9,11 @@ import ResidContent from "./ResidContent";
 import Slidemove from "../sections/Slidemove";
 import Quadrados from "../Quadrados";
 import LoadingOrPageNotfound from "../../util/LoadingOrPageNotfound";
-import { supabase } from "../../util/supabaseClient";
+import { getItemById, getRelatedItems } from "../../data/catalog";
 
 function Residencial() {
 
     const { idParams } = useParams();
-    const [loading, setLoading] = useState(true);
 
     function returnIdParams(urlParams) {
         if (!urlParams) return null;
@@ -23,41 +22,8 @@ function Residencial() {
     };
     const itemId = returnIdParams(idParams);
 
-    const [itemdb, setItemdb] = useState(null);
-    const [related, setRelated] = useState([]);
-
-    // fetch para retornar os dados do residencial clicado/consultado
-    useEffect(() => {
-        const fetchItemdb = async () => {
-            const { data, error } = await supabase.from('items').select('*, const_logo:construtoras(logo), type_name:types(single), status_name:status(name)').eq('id', itemId).maybeSingle();
-            if (error) console.error(error);
-
-            setItemdb(data ?? []);
-            setLoading(false);
-        };
-        fetchItemdb();
-    }, [idParams]);
-
-    // fetch para slide "relacionados";
-    useEffect(() => {
-        const fetchRelateddb = async () => {
-            const { data, error } = await supabase.rpc('related_smart', {
-                _local: itemdb?.local,
-                _status_id: itemdb?.status_id,
-                _exclude_id: itemdb?.id,
-                _limit: 10
-            });
-            if (error) console.error(error);
-            setRelated(data ?? []);
-        };
-        if (itemdb) fetchRelateddb();
-    }, [itemdb?.id, itemdb?.local, itemdb?.status_id]);
-
-    useEffect(() => {
-        setTimeout(() => {
-            console.log(`${itemdb?.name}: `, itemdb);
-        }, 1250);
-    }, [idParams, itemdb])
+    const itemdb = getItemById(itemId);
+    const related = useMemo(() => getRelatedItems(itemId), [itemId]);
 
     // define a string usada como classe e 'type' em clickType
     const condType = "cond";
@@ -93,11 +59,7 @@ function Residencial() {
         return () => window.removeEventListener("resize", updateIsMob);
     }, []);
 
-    if (loading) {
-        return <LoadingOrPageNotfound type={"loading"} />
-    } else if (!loading && !itemdb) {
-        return <LoadingOrPageNotfound type={"notFound"} />
-    };
+    if (!itemdb) return <LoadingOrPageNotfound type="notFound" />;
 
     return (
         !itemdb ? (<p>Carregando...</p>) : (

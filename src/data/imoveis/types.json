@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "name": "Residenciais",
+        "slug": "residenciais",
+        "single": "Residencial",
+        "items_count": 26
+    },
+    {
+        "id": 2,
+        "name": "Casas",
+        "slug": "casas",
+        "single": "Casa",
+        "items_count": 0
+    },
+    {
+        "id": 3,
+        "name": "Terrenos",
+        "slug": "terrenos",
+        "single": "Terreno",
+        "items_count": 0
+    },
+    {
+        "id": 4,
+        "name": "Fazendas",
+        "slug": "fazendas",
+        "single": "Fazenda",
+        "items_count": 0
+    }
+]

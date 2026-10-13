@@ -1,0 +1,128 @@
+[
+    {
+        "id": 1,
+        "banner": {
+            "url": " https://res.cloudinary.com/marcos-grando/image/upload/imgs/construtoras/rdo/riviere-petrusse/banner.jpg ",
+            "public_id": " imgs/construtoras/rdo/riviere-petrusse/banner "
+        },
+        "item_id": 20,
+        "detalhes": [
+            "Estrutura Home Market",
+            "Isolamento Acústico",
+            "Studio na Planta"
+        ],
+        "position": 1
+    },
+    {
+        "id": 2,
+        "banner": {
+            "url": " https://res.cloudinary.com/marcos-grando/image/upload/imgs/construtoras/amc/reserva/banner.jpg ",
+            "public_id": " imgs/construtoras/amc/reserva/banner "
+        },
+        "item_id": 8,
+        "detalhes": [
+            "Estrutura Home Marker",
+            "Aptos c/ 3 Suítes",
+            "Portaria 24h"
+        ],
+        "position": 2
+    },
+    {
+        "id": 3,
+        "banner": {
+            "url": " https://res.cloudinary.com/marcos-grando/image/upload/imgs/construtoras/lg/colina-de-sao-pedro/banner.jpg ",
+            "public_id": " imgs/construtoras/lg/colina-de-sao-pedro/banner "
+        },
+        "item_id": 13,
+        "detalhes": [
+            "Terraços com 2 à 3 Dorms",
+            "Coberturas com 3 Suítes",
+            "Infra para Carro Elétrico"
+        ],
+        "position": 3
+    },
+    {
+        "id": 4,
+        "banner": {
+            "url": " https://res.cloudinary.com/marcos-grando/image/upload/imgs/construtoras/rdo/julio-schappo/banner.jpg ",
+            "public_id": " imgs/construtoras/rdo/julio-schappo/banner "
+        },
+        "item_id": 16,
+        "detalhes": [
+            "Incorporação: 58.995",
+            "Lounge Social",
+            "86-129m²"
+        ],
+        "position": 4
+    },
+    {
+        "id": 5,
+        "banner": {
+            "url": " https://res.cloudinary.com/marcos-grando/image/upload/imgs/construtoras/rdo/lyon/banner.jpg ",
+            "public_id": " imgs/construtoras/rdo/lyon/banner "
+        },
+        "item_id": 17,
+        "detalhes": [
+            "Salão de Festas",
+            "Lounge Terraço",
+            "Lavabo"
+        ],
+        "position": 5
+    },
+    {
+        "id": 6,
+        "banner": {
+            "url": " https://res.cloudinary.com/marcos-grando/image/upload/imgs/construtoras/am/belle-ville/banner.jpg ",
+            "public_id": " imgs/construtoras/am/belle-ville/banner "
+        },
+        "item_id": 1,
+        "detalhes": [
+            "Entrega para 2027",
+            "4 Opções de Plantas",
+            "Garagem para visitantes"
+        ],
+        "position": 6
+    },
+    {
+        "id": 7,
+        "banner": {
+            "url": " https://res.cloudinary.com/marcos-grando/image/upload/imgs/construtoras/am/majestic/banner.jpg ",
+            "public_id": " imgs/construtoras/am/majestic/banner "
+        },
+        "item_id": 3,
+        "detalhes": [
+            "No coração do Kobrasol",
+            "Infra Carro Elétrico",
+            "Piscina térmica, Spa"
+        ],
+        "position": 7
+    },
+    {
+        "id": 8,
+        "banner": {
+            "url": " https://res.cloudinary.com/marcos-grando/image/upload/imgs/construtoras/am/privilege/banner.jpg ",
+            "public_id": " imgs/construtoras/am/privilege/banner "
+        },
+        "item_id": 4,
+        "detalhes": [
+            "Coberturas com 3 Suítes",
+            "Sauna e Spa",
+            "Lavabo"
+        ],
+        "position": 8
+    },
+    {
+        "id": 9,
+        "banner": {
+            "url": " https://res.cloudinary.com/marcos-grando/image/upload/imgs/construtoras/rdo/saint-michel/banner.jpg ",
+            "public_id": " imgs/construtoras/rdo/saint-michel/banner "
+        },
+        "item_id": 21,
+        "detalhes": [
+            "Gardens 2 Dorms",
+            "Infra Carro Elétrico",
+            "Lavabo"
+        ],
+        "position": 9
+    }
+]

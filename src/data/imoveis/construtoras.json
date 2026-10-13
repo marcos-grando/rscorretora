@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "logo": null,
+        "name": "AM",
+        "slug": "am",
+        "local": "Campinas, São José",
+        "valor": 816583.01,
+        "items_count": 6
+    },
+    {
+        "id": 2,
+        "logo": null,
+        "name": "AMC",
+        "slug": "amc",
+        "local": "Campinas, São José",
+        "valor": 1277326.99,
+        "items_count": 3
+    },
+    {
+        "id": 3,
+        "logo": null,
+        "name": "Ferreira Antunes",
+        "slug": "ferreira-antunes",
+        "local": "Coqueiros, Florianópolis",
+        "valor": 0.00,
+        "items_count": 2
+    },
+    {
+        "id": 4,
+        "logo": null,
+        "name": "Gentil",
+        "slug": "gentil",
+        "local": "Barreiros, São José",
+        "valor": 0.00,
+        "items_count": 1
+    },
+    {
+        "id": 5,
+        "logo": null,
+        "name": "LG",
+        "slug": "lg",
+        "local": "Barreiros, São José",
+        "valor": 0.00,
+        "items_count": 2
+    },
+    {
+        "id": 6,
+        "logo": null,
+        "name": "RDO",
+        "slug": "rdo",
+        "local": "Kobrasol, São José",
+        "valor": 793363.64,
+        "items_count": 11
+    },
+    {
+        "id": 7,
+        "logo": null,
+        "name": "Zilli",
+        "slug": "zilli",
+        "local": "Kobrasol, São José",
+        "valor": 0.00,
+        "items_count": 1
+    },
+    {
+        "id": 9999,
+        "logo": null,
+        "name": "Sem construtora",
+        "slug": "sem-construtora",
+        "local": null,
+        "valor": null,
+        "items_count": 0
+    }
+]
